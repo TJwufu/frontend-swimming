@@ -1,0 +1,92 @@
+
+.normal {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  background-color: #eeeeee;
+}
+
+.stadium {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #ddd;
+  .sta_text {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    justify-content: space-between;
+    .sta_name {
+      font-size: 30px;
+      color: #000;
+      flex: 1;
+      padding-top: 20px
+    }
+
+    .sta_other_info {
+      font-size: 25px;
+      color: #666666;
+      flex: 1;
+    }
+
+    .sta_text_wq {
+       font-size: 25px;
+       color: #666666;
+       font-family: "Microsoft YaHei";
+       flex: 1;
+       display: flex;
+       flex-direction: row;
+       align-items: center;
+
+      .sta_text_img {
+        width: 50px;
+        height: 50px;
+        line-height:2;
+    	margin: 15px 0 15px 40px;
+        background-color: #108ee9;
+        color: #fff;
+        text-align: center;
+        border-radius: 0px;
+      }
+     }
+  }
+
+  img{
+    width: 280px;
+    height: 200px;
+    border-radius: 9px;
+    margin-left: 20px;
+  }
+}
+
+.water_quality {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  list-style: none;
+  padding-left: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  border-bottom: 1px solid #ddd;
+  border-top: 1px solid #ddd;
+
+  background-color: #ffffff;
+  .wq_text {
+    line-height:60px;
+    font-size: 25px;
+    color: #666666;
+    padding-left: 20px;
+  }
+
+  .wq_title {
+    font-size: 30px;
+    line-height:60px;
+    padding-left: 20px;
+    color: #666666;
+    border-bottom: 1px solid #ddd;
+  }
+}

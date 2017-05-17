@@ -1,0 +1,88 @@
+.item{
+  border-bottom: 1px solid #ddd;
+  a {
+    color: black;
+    display: flex;
+    flex-direction: row;  
+    .image{
+      margin: 20px;
+      display: flex;
+      flex: 1;
+      img{
+        width: 100%;
+        height: 100%;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+      }
+    }
+    .infomation{
+      margin: 20px 20px 20px 0;
+      display: flex;
+      flex: 2;
+      flex-direction: column;
+      .content{
+        display: flex;
+        justify-content: space-between;
+        line-height: 1.6;
+        font-size: 0.26rem;
+        .firstRow{
+          display: flex;
+          flex-direction: row;
+          font-size: 0.35rem;
+          color: #333;
+          .price{}
+          .name{}
+          .distance{}
+        }
+        .secondRow{
+          display: flex;
+          flex-direction: row;
+          font-size: 0.26rem;
+          color: #999;
+          font-weight: 300;
+          .rating{}
+          .status{}
+        }
+        .thirdRow {
+          display: flex;
+          font-size: 0.26rem;
+        }
+        .forthRow {
+          padding: 0 20px;
+          font-size: 0.24rem;
+          .forthSpan {
+          	padding: 5px;
+          	background: gold;
+          	margin:5px;
+          	color: #fff;
+          }
+        }
+        .fifthRow {
+          font-size: 0.24rem;
+          color: #999;
+        }
+        .sixthRow {
+          // padding: 0 20px;
+          font-size: 0.24rem;
+          .sixthSpan{
+          	padding: 5px;
+          	background: #acda5d;
+          	margin:5px;
+          	color: #fff;
+          }
+        }
+      }
+    }
+  }
+}
+
+.borderImg{
+  margin-right: .5rem;
+  min-height: .8rem;
+  min-width: .8rem;
+  height: .8rem;
+  width: .8rem;
+  border-radius: 1.3rem;
+  border: .02rem solid #ccc;
+  vertical-align: middle;
+}
