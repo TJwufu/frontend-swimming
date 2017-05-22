@@ -31,24 +31,26 @@ export default {
     },
     hadMore: true,
     pageNo: 0,
-    pageSize: 20,
+    pageSize: 900,
     total: 0,
     totalPage: 0,
     totalCount: 0,
     swimTypeOne: '001', // 泳馆类型
+    areaRegion: '',	// 区域
     isSwitch: false, // 是否切换泳馆类型数据
     typeIndex: 0,	// 泳馆类型selectIndex
   },
 
   subscriptions: {
-    homePage({ dispatch, history }) {
+    homePage({ dispatch, history}) {
       history.listen((location) => {
         if (location.pathname === '/pools' || location.pathname === '/home') {
           dispatch({
             type: 'query',
             payload: {
-              pageSize: 20,
+              pageSize: 900,
               swimTypeOne: '001',
+              areaRegion: '',
               typeIndex: 0,
               pageNo: 0,
               hadMore: true,
@@ -120,6 +122,7 @@ export default {
     },
     * queryByIsCoupon({ payload }, { call, put }) {
       const { data } = yield call(fetchPoolList, parse(payload));
+      //console.log("queryByIsCoupon data:",data);
       if (data.data) {
         yield put({
           type: 'showPoolByIsCoupon',

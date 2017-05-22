@@ -32,7 +32,7 @@ class TicketList extends Component {
           <ReactSwipe className={styles.top_img_container} options={opt}>
            {
         	  coupons.map((ele, index) => (
-        	    <img className={styles.top_img} src={ele.imageUrl}  onClick = {showToast}  key={ele.id}/>
+        	    <img className={styles.top_img} src={ele.imageUrl == ''?'http://img.release.1yd.me/FqU7bVj82622HBggqegwkN7RqhQD':ele.imageUrl}  onClick = {showToast}  key={ele.id}/>
         	  ))
             }
           </ReactSwipe>

@@ -7,9 +7,12 @@ import styles from './WaterQuality.less';
 const WaterQuality = ({dispatch, pools}) => {
   const {currentItem} = pools;
   if(currentItem == null){
-	  return (<div>未查找到数据</div>);
+	  return (<div>场所暂未录入信息，请您知晓！</div>);
   }
   const {waterQualityDetail} = currentItem;
+//  if(waterQualityDetail == null || waterQualityDetail.id == null){
+//	  return <div style={{ padding: '10px' }}>场所暂未录入该信息，请您知晓！</div>
+//  }
   return (
     <div className={styles.normal}>
     {/*导航栏*/}
@@ -42,7 +45,7 @@ const WaterQuality = ({dispatch, pools}) => {
           <div className={styles.sta_text_wq}>
             <div>水质</div>
             {/*<img className={styles.sta_text_img} src='http://img.release.1yd.me/Fnq3JmmOan-yAHtJHk-n9-o3Qqbr'/>*/}
-            <div className={styles.sta_text_img}>{currentItem.waterQuality}</div>
+            <div className={styles.sta_text_img}>{currentItem.waterQuality == null ||currentItem.waterQuality ==''  ?'优':currentItem.waterQuality}</div>
           </div>
         </div>
 
@@ -50,50 +53,51 @@ const WaterQuality = ({dispatch, pools}) => {
 
 
       <WhiteSpace size="lg" />
-
       {/*水质信息*/}
-      <ul className={styles.water_quality}>
-        <strong className={styles.wq_title}>数据详情</strong>
+      { (waterQualityDetail == null || waterQualityDetail.id == null)?  (<span>该场所暂未录入水质信息，请您知晓！</span>):(
+	      <ul className={styles.water_quality}>
+	        <strong className={styles.wq_title}>数据详情</strong>
+	
+	        <div className={styles.line1} />
+	
+	        <li className={styles.wq_text}>浑浊度：
+	          <span>{waterQualityDetail.turbidity}</span>
+	        </li>
+	
+	        <li className={styles.wq_text}>PH值：
+	          <span>{waterQualityDetail.ph}</span>
+	        </li>
+	
+	        <li className={styles.wq_text}>尿素：
+	          <span>{waterQualityDetail.urea}</span>
+	        </li>
+	
+	        <li className={styles.wq_text}>菌落总数：
+	          <span>{waterQualityDetail.totalBcterial}</span>
+	        </li>
+	
+	        <li className={styles.wq_text}>总大肠菌群：
+	          <span>{waterQualityDetail.totalDcBcterial}</span>
+	        </li>
+	
+	        <li className={styles.wq_text}>游离性余氯：
+	          <span>{waterQualityDetail.freeCI}</span>
+	        </li>
+	
+	        <li className={styles.wq_text}>化合性余氯：
+	          <span>{waterQualityDetail.combinationCI}</span>
+	        </li>
+	
+	        <li className={styles.wq_text}>臭氧：
+	          <span>{waterQualityDetail.ozone}</span>
+	        </li>
+	
+	        <li className={styles.wq_text}>水温：
+	          <span>{waterQualityDetail.temperature} &#8451;</span>
+	        </li>
+	      </ul>
 
-        <div className={styles.line1} />
-
-        <li className={styles.wq_text}>浑浊度：
-          <span>{waterQualityDetail.turbidity}</span>
-        </li>
-
-        <li className={styles.wq_text}>PH值：
-          <span>{waterQualityDetail.ph}</span>
-        </li>
-
-        <li className={styles.wq_text}>尿素：
-          <span>{waterQualityDetail.urea}</span>
-        </li>
-
-        <li className={styles.wq_text}>菌落总数：
-          <span>{waterQualityDetail.totalBcterial}</span>
-        </li>
-
-        <li className={styles.wq_text}>总大肠菌群：
-          <span>{waterQualityDetail.totalDcBcterial}</span>
-        </li>
-
-        <li className={styles.wq_text}>游离性余氯：
-          <span>{waterQualityDetail.freeCI}</span>
-        </li>
-
-        <li className={styles.wq_text}>化合性余氯：
-          <span>{waterQualityDetail.combinationCI}</span>
-        </li>
-
-        <li className={styles.wq_text}>臭氧：
-          <span>{waterQualityDetail.ozone}</span>
-        </li>
-
-        <li className={styles.wq_text}>水温：
-          <span>{waterQualityDetail.temperature} &#8451;</span>
-        </li>
-      </ul>
-
+      )}
     </div>
   )
 };

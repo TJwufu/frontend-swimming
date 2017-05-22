@@ -9,7 +9,7 @@ import styles from './CoachTop.less';
 const renderContent = (index, isLifeSaver, rowData) => {
   const rowObj = rowData;
   if(rowObj == null || rowObj.id == null){
-	  return <div style={{ padding: '10px' }}>未查到数据，请返回上一页</div>
+	  return <div style={{ padding: '10px' }}>场所暂未录入该信息，请您知晓！</div>
   }
   let certificateArr = rowObj.coachCertificates == null ? []:rowObj.coachCertificates;
   return <div className={styles.describe_container}>
