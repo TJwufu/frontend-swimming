@@ -14,7 +14,9 @@
     "react-lazyload": "^2.2.0",
     "react-router": "^4.1.1",
     "react-swipes": "^1.0.4",
-    "urijs": "^1.18.2"
+    "urijs": "^1.18.2",
+    "react-portal": "^3.0.0",
+    "tween.js": "^16.3.5"
   },
   "devDependencies": {
     "atool-build": "^0.9.3",

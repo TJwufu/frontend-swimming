@@ -43,9 +43,12 @@ const WaterQuality = ({dispatch, pools}) => {
           </div>
 
           <div className={styles.sta_text_wq}>
-            <div>水质</div>
+            <div>水质：</div>
             {/*<img className={styles.sta_text_img} src='http://img.release.1yd.me/Fnq3JmmOan-yAHtJHk-n9-o3Qqbr'/>*/}
-            <div className={styles.sta_text_img}>{currentItem.waterQuality == null ||currentItem.waterQuality ==''  ?'优':currentItem.waterQuality}</div>
+            {(waterQualityDetail == null || waterQualityDetail.assess == null || waterQualityDetail.assess == '' )? '暂无数据': 
+            	(<div className={styles.sta_text_img}>{waterQualityDetail.assess}</div>)
+            }
+            
           </div>
         </div>
 
@@ -59,7 +62,9 @@ const WaterQuality = ({dispatch, pools}) => {
 	        <strong className={styles.wq_title}>数据详情</strong>
 	
 	        <div className={styles.line1} />
-	
+	        <li className={styles.wq_text}>数据录入时间：
+	          <span>{waterQualityDetail.newDate}</span>
+	        </li>
 	        <li className={styles.wq_text}>浑浊度：
 	          <span>{waterQualityDetail.turbidity}</span>
 	        </li>

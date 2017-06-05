@@ -6,7 +6,7 @@ import {Toast} from 'antd-mobile';
 import styles from './TicketList.less';
 import ReactSwipe from 'react-swipes';
 const showToast = () => {
-  Toast.info('恭喜领取成功:)');
+  //Toast.info('恭喜领取成功:)');
 }
 const renderContent = () => (
   <div></div>
@@ -32,7 +32,12 @@ class TicketList extends Component {
           <ReactSwipe className={styles.top_img_container} options={opt}>
            {
         	  coupons.map((ele, index) => (
-        	    <img className={styles.top_img} src={ele.imageUrl == ''?'http://img.release.1yd.me/FqU7bVj82622HBggqegwkN7RqhQD':ele.imageUrl}  onClick = {showToast}  key={ele.id}/>
+        		<div className={styles.itemDiv}>
+        			{ele.imageUrl == ''?'':<img className={styles.top_img} src={ele.imageUrl == ''?'http://img.release.1yd.me/FqU7bVj82622HBggqegwkN7RqhQD':ele.imageUrl}  onClick = {showToast}  key={ele.id}/>}
+        			<div>
+        				{ele.title} : {ele.couponDesc}
+        			</div>
+        		</div>
         	  ))
             }
           </ReactSwipe>

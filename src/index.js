@@ -3,6 +3,7 @@ import createLoading from 'dva-loading';
 import pools from './models/pools';
 import global from './models/global';
 import infos from './models/infos';
+import wechatInfo from './models/wechatInfo';
 // import coaches from './models/coaches';
 import router from './router';
 import './index.html';
@@ -19,6 +20,9 @@ app.model(global);
 app.model(pools);
 app.model(infos);
 // app.model(coaches);
+window.app = app;
+
+app.model(wechatInfo);
 
 // 4. Router
 app.router(router);

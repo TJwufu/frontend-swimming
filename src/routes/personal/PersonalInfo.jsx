@@ -1,21 +1,16 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { Table, List, InputItem, Switch, Stepper, Slider, Button, NavBar } from 'antd-mobile';
 import { hashHistory } from 'dva/router';
+import { connect } from 'dva';
 import FilletImage from '../../components/Common/FilletImage';
 import styles from './PersonalInfo.less';
 
 const Item = List.Item;
 const Brief = Item.Brief;
 
-const PersonalInfo = () => {
-  {/* get请求数据 */}
-  const personalObj = {
-  	name:"",
-  	phone:"",
-  	//imageUrl: "http://img.release.1yd.me/Fnq3JmmOan-yAHtJHk-n9-o3Qqbr"
-  	imageUrl: "http://oiu42aq9j.bkt.clouddn.com/my_digital.png"
-  };
+const PersonalInfo = ({ pools}) => {
 
+  const {userInfo} = pools;
   return (
 	<div className={styles.div_body}>
 			
@@ -29,12 +24,13 @@ const PersonalInfo = () => {
       我的
     </NavBar>
       <List style={{paddingTop: '.8rem'}}>
-        <Item extra={<div className={styles.div_top}><FilletImage width="100px" height="100px" imageUrl={personalObj.imageUrl} /></div>}>头像</Item>
-        <Item extra={<div>{personalObj.name}</div>}>昵称</Item>
-        <Item extra={<div>{personalObj.phone}</div>}>手机号</Item>
+        <Item extra={<div className={styles.div_top}><FilletImage width="100px" height="100px" imageUrl={userInfo.headimgurl == ''?"http://oiu42aq9j.bkt.clouddn.com/my_digital.png": userInfo.headimgurl} /></div>}>头像</Item>
+        <Item extra={<div>{userInfo.nickname}</div>}>昵称</Item>
+        <Item extra={<div></div>}>手机号</Item>
         <Item extra={<div>修改</div>}>登录密码</Item>
       </List>
    	</div>
 )};
 
-export default PersonalInfo;
+const mapStateToProps = ({pools}) => ({pools});
+export default connect(mapStateToProps)(PersonalInfo);

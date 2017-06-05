@@ -3,12 +3,9 @@ import { SearchBar ,Toast, Carousel, PickerView} from 'antd-mobile';
 import React, { PropTypes } from 'react';
 import PoolList from '../components/Pools/PoolList';
 import styles from './Pools.less';
-const showToast = () => {
-  Toast.info('暂时没有哦:)');
-}
 
 const Pools = ({ dispatch, pools, loading }) => {
-  const { dataSource, pageNo, pageSize, swimTypeOne, areaRegion, hadMore, typeIndex } = pools;
+  const { dataSource, pageNo, pageSize, swimTypeOne,orderFlag, areaRegion, hadMore, typeIndex } = pools;
   const onEndReached = (event) => {
     if (!loading && hadMore) {
       dispatch({
@@ -17,6 +14,20 @@ const Pools = ({ dispatch, pools, loading }) => {
       });
     }
   };
+
+  function showToast(flag,event){
+  	dispatch({
+          type: 'pools/query',
+          payload: {
+            pageSize: pageSize,
+            swimTypeOne: swimTypeOne,
+            areaRegion: areaRegion,
+            hadMore: true,
+            isSwitch: true,
+            orderFlag: flag,
+          }
+      });
+  }
   const swimTypeClick = (req_swimType,event) => {
     dispatch({
         type: 'pools/query',
@@ -25,7 +36,8 @@ const Pools = ({ dispatch, pools, loading }) => {
           swimTypeOne: req_swimType,
           areaRegion: areaRegion,
           hadMore: true,
-          isSwitch: true
+          isSwitch: true,
+          orderFlag: orderFlag,
         }
     });
   };
@@ -38,7 +50,8 @@ const Pools = ({ dispatch, pools, loading }) => {
           swimTypeOne: swimTypeOne,
           areaRegion: event.target.value,
           hadMore: true,
-          isSwitch: true
+          isSwitch: true,
+          orderFlag: orderFlag,
         }
     });
   };
@@ -46,32 +59,13 @@ const Pools = ({ dispatch, pools, loading }) => {
   return (
     <div className={styles.normal}>
       <SearchBar placeholder="搜索"/>
-      <div className={styles.select_query}>
-          区域：
-	      <select onChange={selectChange}>
-		    <option value="">全部</option>
-		    <option value="浦东新区">浦东新区</option>
-			<option value="黄浦区">黄浦区</option>
-			<option value="徐汇区">徐汇区</option>
-			<option value="长宁区">长宁区</option>
-			<option value="静安区">静安区</option>
-			<option value="普陀区">普陀区</option>
-			<option value="虹口区">虹口区</option>
-			<option value="杨浦区">杨浦区</option>
-			<option value="闵行区">闵行区</option>
-			<option value="宝山区">宝山区</option>
-			<option value="嘉定区">嘉定区</option>
-			<option value="金山区">金山区</option>
-			<option value="松江区">松江区</option>
-			<option value="青浦区">青浦区</option>
-			<option value="奉贤区">奉贤区</option>
-			<option value="崇明区">崇明区</option>
-		  </select>
-      </div>
-      <div className={styles.head}>
-        <div className={swimTypeOne == "001"?styles.active:""}  onClick={swimTypeClick.bind(this,"001")} ><span>室内游泳馆</span></div>
-        <div className={swimTypeOne == "002"?styles.active:""}  onClick={swimTypeClick.bind(this,"002")} ><span>室外游泳馆</span></div>
-        <div className={swimTypeOne == "003"?styles.active:""}  onClick={swimTypeClick.bind(this,"003")} ><span>水上世界</span></div>
+      <div  className={styles.headBg}>
+      	  <div className={styles.headNum}>总数：{dataSource.length}</div>
+	      <div className={styles.head}>
+	        <div className={swimTypeOne == "001"?styles.active:""}  onClick={swimTypeClick.bind(this,"001")} ><span>室内游泳馆</span></div>
+	        <div className={swimTypeOne == "002"?styles.active:""}  onClick={swimTypeClick.bind(this,"002")} ><span>室外游泳馆</span></div>
+	        <div className={swimTypeOne == "003"?styles.active:""}  onClick={swimTypeClick.bind(this,"003")} ><span>水上世界</span></div>
+	      </div>
       </div>
 {/*
 	  <Carousel
@@ -115,10 +109,34 @@ const Pools = ({ dispatch, pools, loading }) => {
       </Carousel>
 */}
       <div className={styles.sort}>
-        <div onClick = {showToast}>总数：{dataSource.length}</div>
-        <div onClick = {showToast}>距离<div className={styles.triangle}></div></div>
-        <div onClick = {showToast} className={styles.active}>人气<div className={styles.triangle}></div></div>
+        <div>
+	        <select onChange={selectChange}>
+			    <option value="">全部区域</option>
+			    <option value="浦东新区">浦东新区</option>
+				<option value="黄浦区">黄浦区</option>
+				<option value="徐汇区">徐汇区</option>
+				<option value="长宁区">长宁区</option>
+				<option value="静安区">静安区</option>
+				<option value="普陀区">普陀区</option>
+				<option value="虹口区">虹口区</option>
+				<option value="杨浦区">杨浦区</option>
+				<option value="闵行区">闵行区</option>
+				<option value="宝山区">宝山区</option>
+				<option value="嘉定区">嘉定区</option>
+				<option value="金山区">金山区</option>
+				<option value="松江区">松江区</option>
+				<option value="青浦区">青浦区</option>
+				<option value="奉贤区">奉贤区</option>
+				<option value="崇明区">崇明区</option>
+			  </select>
+        </div>
+        <div onClick = {showToast.bind(this,"1")} className={orderFlag == "1"?styles.active:styles.triangle}>距离<div className={styles.triangle}></div></div>
+        <div onClick = {showToast.bind(this,"5")} className={orderFlag == "5"?styles.active:styles.triangle}>人气<div className={styles.triangle}></div></div>
       </div>
+      {/*<div className={styles.select_query}>
+      	总数：{dataSource.length}
+      </div>
+      */}
       <PoolList {...poolListProps} />
     </div>
   );

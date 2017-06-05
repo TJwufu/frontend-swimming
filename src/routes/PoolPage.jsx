@@ -12,6 +12,7 @@ const Item = List.Item;
 
 const PoolPage = ({ location, pools, loading }) => {
   const { currentItem } = pools;
+  const {waterQualityDetail} = currentItem;
   /**const iconServices = 
   {
     "001": "https://oiu4ewuqq.qnssl.com/wifi.png",
@@ -48,7 +49,7 @@ const PoolPage = ({ location, pools, loading }) => {
         <div className={styles.address_line}>
           <div className={styles.address_item}>
             <div ><strong>{currentItem.spName}</strong></div>
-            <div ><span>场内人数：</span><span className={styles.sixthRow}>低</span></div>
+            <div ><span>场内人数：</span><span className={styles.sixthRow1}>暂无数据</span></div>
             <div className={styles.address_area}>地址：<span><Link to={`map`}>{currentItem.address}</Link></span></div>
             <div className={styles.address_phone}>电话：<span>{currentItem.phone}</span></div>
 		      
@@ -96,8 +97,16 @@ const PoolPage = ({ location, pools, loading }) => {
         <div style={{ height: '0.3rem', background: '#f5f5f9', borderBottom: '1px solid #ddd' }} />
         <Item>
           <Flex style={{ color: '#666' }}>
-            <Flex.Item><span>水质 :</span> <Link to={`wq`}><span className={styles.water_quality}>{currentItem.waterQuality == null ||currentItem.waterQuality ==''  ?'优':currentItem.waterQuality}</span></Link></Flex.Item>
-            <Flex.Item>水温 : <span className={styles.water_temp}>{currentItem.temperature ==''?25:currentItem.temperature} &#8451;</span></Flex.Item>
+            <Flex.Item><span>水质 :</span>
+            	{(waterQualityDetail == null || waterQualityDetail.assess == null || waterQualityDetail.assess == '' )? '暂无数据': 
+	            	(<Link to={`wq`}><span className={styles.water_quality}>{waterQualityDetail.assess}</span></Link>)
+	            }
+            </Flex.Item>
+            <Flex.Item><span>水温 :</span>
+            	{(waterQualityDetail == null || waterQualityDetail.temperature == null || waterQualityDetail.temperature == '' )? '暂无数据': 
+	            	(<span className={styles.water_temp}>{waterQualityDetail.temperature} &#8451;</span>)
+	            }
+            </Flex.Item>
           </Flex>
         </Item>
       </List>

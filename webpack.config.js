@@ -29,7 +29,7 @@ module.exports = function(webpackConfig, env) {
   //配置各种全局环境变量
   var define = {
     "default": {
-      "HOST": "http://swimming.51yundong.me", //"http://192.168.2.128:8093",
+      "HOST": "http://swimming.51yundong.me", //http://swimming.51yundong.me
       "DEBUG": true
     },
     "development": {

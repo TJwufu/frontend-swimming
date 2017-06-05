@@ -23,7 +23,7 @@ const PoolItem = ({ rowData, sectionId, rowId }) => (
           */}
         </div>
         <div className={styles.content}>
-          <div className={styles.sixthRow}><span>场内人数：</span><span className={styles.sixthSpan}>低</span></div>
+          <div className={styles.sixthRow}><span>场内人数：</span><span className={styles.sixthSpan1}>暂无数据</span></div>
         </div>
         <div className={styles.content}>
           <div className={styles.thirdRow}><StarIcons currentStarNumber={rowData.score} maxStarNumber="5" /></div>

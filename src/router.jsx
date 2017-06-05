@@ -17,35 +17,78 @@ import WaterQuality from './routes/WaterQuality';
 import Feedback from './routes/Feedback';
 import PersonalInfo from './routes/personal/PersonalInfo';
 import Map from './routes/Map';
+import URI from 'urijs';
+import confidential from './conf/Confidential';
+import wx from './routes/wx';
+
+function generateGetCodeUrl(redirectURL) {
+
+  return new URI("https://open.weixin.qq.com/connect/oauth2/authorize")
+    .addQuery("appid", confidential.APP_ID)
+    .addQuery("redirect_uri", redirectURL)
+    .addQuery("response_type", "code")
+    .addQuery("scope", "snsapi_userinfo")
+    .addQuery("response_type", "code")
+    .hash("wechat_redirect")
+    .toString();
+};
+
+export default ({ history,app }) => {
+
+  function wechatAuth(nextState, replace, next) {
+
+    const uri = new URI(document.location.href);
+    const query = uri.query(true);
+    const {code} = query;
+    if(code) {
+      //通过code获取用户信息
+      //fetchTokenByCode(code);
+      window.app._store.dispatch({
+          type: 'pools/fetchTokenByCode',
+          payload: { code: code}
+      });
+      next();
+    } else {
+      console.info("generateGetCodeUrl(document.location.href):",generateGetCodeUrl(document.location.href));
+      document.location = generateGetCodeUrl(document.location.href);
+    }
+  }
 
 
-export default ({ history }) => {
   return (
-    <Router history={history}>
-      <Redirect from="/" to="/pools" />
-      <Route path="/home" component={HomeTabBar} />
-      <Route path="/pools" component={HomeTabBar} />
-      <Route path="/pools/:poolId" component={PoolPage} />
-      <Route path="/discount" component={Preferential} />
-      <Route path="/mine" component={Playground} />
-      <Route path="/playground" component={Playground} />
-      <Route path="/info" component={Info} />
-      <Route path="/photoAlbum" component={PhotoAlbum} />
-      <Route path="/photoAlbum/:poolId" component={PhotoAlbum} />
-      <Route path="/profile" component={Profile} />
-      <Route path="/lifesaver" component={LifeSaver} />
-      <Route path="/profile" component={Profile} />
-      <Route path="/coach" component={CoachPage} />
-      <Route path="/ticket" component={Tickets} />
-      <Route path="/ticket/:poolId" component={Tickets} />
-      <Route path="/news" component={NewsDetails} />
-      <Route path="/news/:newsId" component={NewsDetails} />
-      <Route path="/wq" component={WaterQuality} />
-      <Route path="/fb" component={Feedback} />
-      <Route path="/personalInfo" component={PersonalInfo} />
-      <Route path="/map" component={Map} />
+    <Router history={history} >
+      <Redirect from="/" to="/wx"  />
 
-      <Route path="*" component={NotFound} />
+      {/*<Route path="/wx" component={wx} onEnter={wechatAuth}/>*/}
+      <Route path="/wx" component={wx} onEnter={wechatAuth}/>
+      <Route path="/home" component={HomeTabBar} />
+      {/*<Route path="/pools" component={HomeTabBar} />*/}
+
+        <Route path="/pools" component={HomeTabBar} />
+
+
+
+      <Route path="/pools/:poolId" component={PoolPage} />
+        <Route path="/discount" component={Preferential} />
+        <Route path="/mine" component={Playground}/>
+        <Route path="/playground" component={Playground} />
+        <Route path="/info" component={Info} />
+        <Route path="/photoAlbum" component={PhotoAlbum} />
+        <Route path="/photoAlbum/:poolId" component={PhotoAlbum} />
+        <Route path="/profile" component={Profile} />
+        <Route path="/lifesaver" component={LifeSaver} />
+        <Route path="/profile" component={Profile} />
+        <Route path="/coach" component={CoachPage} />
+        <Route path="/ticket" component={Tickets} />
+        <Route path="/ticket/:poolId" component={Tickets} />
+        <Route path="/news" component={NewsDetails} />
+        <Route path="/news/:newsId" component={NewsDetails} />
+        <Route path="/wq" component={WaterQuality} />
+        <Route path="/fb" component={Feedback} />
+        <Route path="/personalInfo" component={PersonalInfo} />
+        <Route path="/map" component={Map} />
+
+        <Route path="*" component={NotFound} />
     </Router>
   );
 };
