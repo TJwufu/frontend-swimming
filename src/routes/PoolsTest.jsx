@@ -29,7 +29,7 @@ const Pools = ({ dispatch, pools, loading }) => {
       });
   }
   const swimTypeClick = (req_swimType,event) => {
-    dispatch({
+	dispatch({
         type: 'pools/query',
         payload: {
           pageSize: pageSize,
@@ -42,7 +42,6 @@ const Pools = ({ dispatch, pools, loading }) => {
     });
   };
   const selectChange= (event) => {
-    console.info("selectChange:",event.target.value);
     dispatch({
         type: 'pools/query',
         payload: {

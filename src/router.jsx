@@ -56,7 +56,7 @@ export default ({ history,app }) => {
 
 
   return (
-    <Router history={history} >
+    <Router history={history}  onUpdate={() => window.scrollTo(0, 0)}>
       <Redirect from="/" to="/wx"  />
 
       {/*<Route path="/wx" component={wx} onEnter={wechatAuth}/>*/}
