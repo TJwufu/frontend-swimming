@@ -3,6 +3,7 @@ import { SearchBar ,Toast, Carousel, PickerView} from 'antd-mobile';
 import React, { PropTypes } from 'react';
 import PoolList from '../components/Pools/PoolList';
 import styles from './Pools.less';
+import DownMenu from '../components/Pools/DownMenu';
 
 const Pools = ({ dispatch, pools, loading }) => {
   const { dataSource, pageNo, pageSize, swimTypeOne,orderFlag, areaRegion, hadMore, typeIndex } = pools;
@@ -54,10 +55,31 @@ const Pools = ({ dispatch, pools, loading }) => {
         }
     });
   };
+  const searchBarClick= (_val,event) => {
+	  dispatch({
+        type: 'pools/query',
+        payload: {
+            pageSize: pageSize,
+            swimTypeOne: '',
+            spNameOrAddress: _val,
+            spName: _val,
+            areaRegion: '',
+            hadMore: true,
+            isSwitch: true,
+            orderFlag: '',
+          }
+      });
+  };
   const poolListProps = { dataSource, onEndReached, loading };
   return (
     <div className={styles.normal}>
       <SearchBar placeholder="搜索"/>
+	  <SearchBar
+	      placeholder="输入游泳场所名称"
+	      onSubmit={value => searchBarClick(value)}
+	      onCancel={() => console.log('onCancel')}
+	    />
+	  <DownMenu />
       <div  className={styles.headBg}>
       	  <div className={styles.headNum}>总数：{dataSource.length}</div>
 	      <div className={styles.head}>

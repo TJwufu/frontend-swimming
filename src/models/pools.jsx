@@ -33,11 +33,11 @@ export default {
     },
     hadMore: true,
     pageNo: 0,
-    pageSize: 900,
+    pageSize: 9000,
     total: 0,
     totalPage: 0,
     totalCount: 0,
-    swimTypeOne: '001', // 泳馆类型
+    swimTypeOne: '', // 泳馆类型
     areaRegion: '',	// 区域
     isSwitch: false, // 是否切换泳馆类型数据
     typeIndex: 0,	// 泳馆类型selectIndex
@@ -61,6 +61,7 @@ export default {
     	unionid: '',
     },
     orderFlag: '',	// 排序标识
+    sereviceTypeStr: '', //提供服务类型
   },
 
   subscriptions: {
@@ -71,8 +72,8 @@ export default {
           dispatch({
             type: 'query',
             payload: {
-              pageSize: 900,
-              swimTypeOne: '001',
+              pageSize: 9000,
+              swimTypeOne: '',
               areaRegion: '',
               typeIndex: 0,
               pageNo: 0,

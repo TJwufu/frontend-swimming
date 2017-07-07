@@ -45,13 +45,21 @@ const PoolPage = ({ location, pools, loading }) => {
         泳池详情
       </NavBar>
       <List className={styles.list}  style={{paddingTop: '.8rem'}}>
-        <img className={styles.photo} src={currentItem.spAvatar} alt="游泳池照片" />
+      	<Link to={`/photoAlbum/${currentItem.id}`}> 
+        	<img className={styles.photo} src={currentItem.spAvatar} alt="游泳池照片" />
+        </Link>
         <div className={styles.address_line}>
           <div className={styles.address_item}>
             <div ><strong>{currentItem.spName}</strong></div>
             <div ><span>场内人数：</span><span className={styles.sixthRow1}>暂无数据</span></div>
             <div className={styles.address_area}>地址：<span><Link to={`map`}>{currentItem.address}</Link></span></div>
+            <div className={styles.address_phone}>负责人：<span>{currentItem.principal}</span></div>
             <div className={styles.address_phone}>电话：<span>{currentItem.phone}</span></div>
+            <div className={styles.address_phone}>建成年月：<span>{currentItem.completionDate}</span></div>
+            <div className={styles.address_phone}>场所开放对象：<span>{currentItem.openObject}</span></div>
+            <div className={styles.address_phone}>备注：<span>{currentItem.remark}</span></div>
+            <div className={styles.address_phone}>交通信息：<span>{currentItem.travelInformation}</span></div>
+            
 		      
           </div>
         </div>

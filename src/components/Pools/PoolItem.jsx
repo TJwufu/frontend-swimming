@@ -7,17 +7,17 @@ const PoolItem = ({ rowData, sectionId, rowId }) => (
   <div className={styles.item} key={rowId}>
     <Link to={`/pools/${rowData.id}`}>
       <div className={styles.image}>
-        <img style={{ height: '200px', width: '100%' }} src={rowData.spAvatar !== '' ? rowData.spAvatar : 'http://img.release.1yd.me/Fnq3JmmOan-yAHtJHk-n9-o3Qqbr'} alt={rowData.spAvatar} />
+        <img style={{ height: '1.6rem', width: '100%' }} src={rowData.spAvatar !== '' ? rowData.spAvatar : 'http://img.release.1yd.me/Fnq3JmmOan-yAHtJHk-n9-o3Qqbr'} alt={rowData.spAvatar} />
       </div>
       <div className={styles.infomation}>
         <div className={styles.content}>
-          <div className={styles.firstRow}>{rowData.spName}</div>
+          <div className={styles.firstRow}>{rowData.spName!=null && rowData.spName.length > 13? `${rowData.spName.slice(0,13)}...` : rowData.spName}</div>
           {/* 取消水质展示
           <div className={styles.forthRow}><span>水质：</span><span className={styles.forthSpan}>优</span></div>
           */}
         </div>
         <div className={styles.content}>
-          <div className={styles.secondRow}>{rowData.address}</div>
+          <div className={styles.secondRow}>{rowData.address!=null && rowData.address.length > 20? `${rowData.address.slice(0,20)}...` : rowData.address}</div>
           {/* 场内人数位置调整
           <div className={styles.sixthRow}><span>场内人数：</span><span className={styles.sixthSpan}>低</span></div>
           */}
