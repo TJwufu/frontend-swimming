@@ -51,16 +51,14 @@ const PoolPage = ({ location, pools, loading }) => {
         <div className={styles.address_line}>
           <div className={styles.address_item}>
             <div ><strong>{currentItem.spName}</strong></div>
-            <div ><span>场内人数：</span><span className={styles.sixthRow1}>暂无数据</span></div>
-            <div className={styles.address_area}>地址：<span><Link to={`map`}>{currentItem.address}</Link></span></div>
-            <div className={styles.address_phone}>负责人：<span>{currentItem.principal}</span></div>
-            <div className={styles.address_phone}>电话：<span>{currentItem.phone}</span></div>
-            <div className={styles.address_phone}>建成年月：<span>{currentItem.completionDate}</span></div>
-            <div className={styles.address_phone}>场所开放对象：<span>{currentItem.openObject}</span></div>
-            <div className={styles.address_phone}>备注：<span>{currentItem.remark}</span></div>
-            <div className={styles.address_phone}>交通信息：<span>{currentItem.travelInformation}</span></div>
+            <div className={styles.address_area}>地址：<Link to={`map`}><span>{currentItem.address}</span><span style={{ fontSize: '0.2rem',marginLeft:'0.1rem' }}>(点击导航)</span></Link></div>
+            {currentItem.principal == null || currentItem.principal == ''?null:<div className={styles.address_phone}>负责人：<span>{currentItem.principal}</span></div>}
+            {currentItem.phone == null || currentItem.phone == ''?null:<div className={styles.address_phone}>电话：<span>{currentItem.phone}</span></div>}
+            {currentItem.completionDate == null || currentItem.completionDate == ''?null:<div className={styles.address_phone}>建成年月：<span>{currentItem.completionDate}</span></div>}
+            {currentItem.openObject == null || currentItem.openObject == ''?null:<div className={styles.address_phone}>开放性质：<span>{currentItem.openObject}</span></div>}
+            {currentItem.remark == null || currentItem.remark == ''?null:<div className={styles.address_phone}>开放时间：<span>{currentItem.remark}</span></div>}
+            {currentItem.travelInformation == null || currentItem.travelInformation == ''?null:<div className={styles.address_phone}>交通信息：<span>{currentItem.travelInformation}</span></div>}
             
-		      
           </div>
         </div>
         <Item style={{ borderBottom: '1px solid #ddd' }}>
@@ -77,7 +75,7 @@ const PoolPage = ({ location, pools, loading }) => {
           {
             currentItem.serviceTypes.map((ele, index) => {
               {
-                return (<img className={styles.icon_line} src={iconServices[ele]} alt={ele} key={ele}/>)
+                return ele == '002' || ele == '003' || ele == '004'?null:(<img className={styles.icon_line} src={iconServices[ele]} alt={ele} key={ele}/>)
               	
               }
     	      

@@ -1,5 +1,5 @@
 /* eslint import/extensions: 0 */
-import { SearchBar ,Toast, Carousel, PickerView} from 'antd-mobile';
+import { SearchBar ,Toast, Carousel, PickerView, Button, Flex} from 'antd-mobile';
 import React, { PropTypes } from 'react';
 import PoolList from '../components/Pools/PoolList';
 import styles from './Pools.less';
@@ -55,13 +55,17 @@ const Pools = ({ dispatch, pools, loading }) => {
         }
     });
   };
+  var _searchVal = '';
+  const searchBarChange= (_val,event) => {
+	  _searchVal = _val;
+  };
   const searchBarClick= (_val,event) => {
 	  dispatch({
         type: 'pools/query',
         payload: {
             pageSize: pageSize,
             swimTypeOne: '',
-            spNameOrAddress: _val,
+            spNameOrAddress: _searchVal,
             spName: _val,
             areaRegion: '',
             hadMore: true,
@@ -73,13 +77,21 @@ const Pools = ({ dispatch, pools, loading }) => {
   const poolListProps = { dataSource, onEndReached, loading };
   return (
     <div className={styles.normal}>
-      <SearchBar placeholder="搜索"/>
-	  <SearchBar
-	      placeholder="输入游泳场所名称"
-	      onSubmit={value => searchBarClick(value)}
-	      onCancel={() => console.log('onCancel')}
-	    />
-	  <DownMenu />
+      <div className={styles.headSearch}>
+	      <div style={{width:'75%'}}>
+		    <SearchBar
+		      placeholder="输入游泳场所名称"
+			  onSubmit={value => searchBarClick(value)}
+		      onBlur={value => searchBarClick(value)}
+		      onChange={value => searchBarChange(value)}
+		    />
+		  </div>
+		  <div style={{paddingTop:'0.2rem'}}>
+		    <Button type="primary" inline size="small">搜索</Button>
+		  </div>
+		  <div className={styles.headSearchNum}>{dataSource.length}</div>
+		</div>
+      <DownMenu />
       <div  className={styles.headBg}>
       	  <div className={styles.headNum}>总数：{dataSource.length}</div>
 	      <div className={styles.head}>

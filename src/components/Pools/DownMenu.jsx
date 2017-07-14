@@ -132,12 +132,31 @@ const DownMenu = ({ pools,dispatch,type}) => {
   //  const ins = Popup.newInstance();
   //  ins.show(<Button onClick={() => ins.hide()}>关闭</Button>);
   // },
+  const qAreaRegion = pools.areaRegion !=null && pools.areaRegion!='' ? pools.areaRegion: '区域';
+  var qSwimTypeOne = pools.swimTypeOne;
+  if(qSwimTypeOne == '001'){
+	  qSwimTypeOne = '室内游泳馆';
+  }else if(qSwimTypeOne == '002'){
+	  qSwimTypeOne = '室外游泳馆';
+  }else if(qSwimTypeOne == '003'){
+	  qSwimTypeOne = '水上世界';
+  }else{
+	  qSwimTypeOne = '场所类型';
+  }
+  var qOrderFlag = pools.orderFlag;
+  if(qOrderFlag == '1'){
+	  qOrderFlag = '离我最近';
+  }else if(qOrderFlag == '5'){
+	  qOrderFlag = '人气最高';
+  }else{
+	  qOrderFlag = '默认排序';
+  }
   return (
     <div style={{ padding: '0.05rem' }}>
       <div className={styles.head}>
-	    <div className={styles.active} onClick={onClick.bind(this,"Area")}><span>区域  <Icon style={{marginLeft:'0.10rem',color:'#DCDCDC'}} type="down" size="xs" /></span></div>
-	  	<div className={styles.active} onClick={onClick.bind(this,"SwimType")}><span>场所类型 <Icon style={{marginLeft:'0.10rem',color:'#DCDCDC'}} type="down" size="xs" /></span></div>
-	  	<div className={styles.active} onClick={onClick.bind(this,"Sorting")}><span>智能排序 <Icon style={{marginLeft:'0.10rem',color:'#DCDCDC'}} type="down" size="xs" /></span></div>
+	    <div className={styles.active} onClick={onClick.bind(this,"Area")}><span>{qAreaRegion} <Icon style={{marginLeft:'0.10rem',color:'#DCDCDC'}} type="down" size="xs" /></span></div>
+	  	<div className={styles.active} onClick={onClick.bind(this,"SwimType")}><span>{qSwimTypeOne} <Icon style={{marginLeft:'0.10rem',color:'#DCDCDC'}} type="down" size="xs" /></span></div>
+	  	<div className={styles.active} onClick={onClick.bind(this,"Sorting")}><span>{qOrderFlag} <Icon style={{marginLeft:'0.10rem',color:'#DCDCDC'}} type="down" size="xs" /></span></div>
 	  	<div className={styles.active} onClick={onClick.bind(this,"Query")}><span>筛选 <Icon style={{marginLeft:'0.10rem',color:'#DCDCDC'}} type="down" size="xs" /></span></div>
 	  </div>
     </div>
