@@ -62,6 +62,7 @@ export default {
     },
     orderFlag: '',	// 排序标识
     sereviceTypeStr: '', //提供服务类型
+    spNameOrAddress: '',
     queryParam:{
     	qSwimTypeOne:'',
     	qAreaRegion:'',

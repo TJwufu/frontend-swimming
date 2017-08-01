@@ -32,6 +32,12 @@ const PoolPage = ({ location, pools, loading }) => {
   	"005": "http://img.release.1yd.me/Fll6OFOZTcegtcw9_SJ8DIAYVWKg",
   	"006": "http://img.release.1yd.me/FjEWADuYCM2DNh0XuA--DwdlMJU-",
   };
+  
+  // 拨打电话
+  function callPhone(_phone){
+    return document.location = ('tel:'+_phone);
+  }
+  
   return (
     <div className={styles.normal}>
       <NavBar
@@ -53,7 +59,7 @@ const PoolPage = ({ location, pools, loading }) => {
             <div ><strong>{currentItem.spName}</strong></div>
             <div className={styles.address_area}>地址：<Link to={`map`}><span>{currentItem.address}</span><span style={{ fontSize: '0.2rem',marginLeft:'0.1rem' }}>(点击导航)</span></Link></div>
             {currentItem.principal == null || currentItem.principal == ''?null:<div className={styles.address_phone}>负责人：<span>{currentItem.principal}</span></div>}
-            {currentItem.phone == null || currentItem.phone == ''?null:<div className={styles.address_phone}>电话：<span>{currentItem.phone}</span></div>}
+            {currentItem.phone == null || currentItem.phone == ''?null:<div className={styles.address_phone} onClick={callPhone.bind(this,currentItem.phone)}>电话：<span>{currentItem.phone}</span></div>}
             {currentItem.completionDate == null || currentItem.completionDate == ''?null:<div className={styles.address_phone}>建成年月：<span>{currentItem.completionDate}</span></div>}
             {currentItem.openObject == null || currentItem.openObject == ''?null:<div className={styles.address_phone}>开放性质：<span>{currentItem.openObject}</span></div>}
             {currentItem.remark == null || currentItem.remark == ''?null:<div className={styles.address_phone}>开放时间：<span>{currentItem.remark}</span></div>}

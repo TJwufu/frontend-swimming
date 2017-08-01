@@ -64,10 +64,8 @@ export default ({ history,app }) => {
       <Route path="/home" component={HomeTabBar} />
       {/*<Route path="/pools" component={HomeTabBar} />*/}
 
-        <Route path="/pools" component={HomeTabBar} />
-
-
-
+      <Route path="/pools" component={HomeTabBar} />
+      
       <Route path="/pools/:poolId" component={PoolPage} />
         <Route path="/discount" component={Preferential} />
         <Route path="/mine" component={Playground}/>
