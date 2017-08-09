@@ -6,7 +6,7 @@ import styles from './Pools.less';
 import DownMenu from '../components/Pools/DownMenu';
 
 const Pools = ({ dispatch, pools, loading }) => {
-  const { dataSource, pageNo, pageSize, swimTypeOne,orderFlag, areaRegion, hadMore, typeIndex } = pools;
+  const { dataSource, pageNo, pageSize, swimTypeOne,orderFlag, areaRegion, spNameOrAddress, hadMore, typeIndex } = pools;
   const onEndReached = (event) => {
     if (!loading && hadMore) {
       dispatch({
@@ -23,6 +23,7 @@ const Pools = ({ dispatch, pools, loading }) => {
             pageSize: pageSize,
             swimTypeOne: swimTypeOne,
             areaRegion: areaRegion,
+            spNameOrAddress: spNameOrAddress,
             hadMore: true,
             isSwitch: true,
             orderFlag: flag,
@@ -36,6 +37,7 @@ const Pools = ({ dispatch, pools, loading }) => {
           pageSize: pageSize,
           swimTypeOne: req_swimType,
           areaRegion: areaRegion,
+          spNameOrAddress: spNameOrAddress,
           hadMore: true,
           isSwitch: true,
           orderFlag: orderFlag,
@@ -49,6 +51,7 @@ const Pools = ({ dispatch, pools, loading }) => {
           pageSize: pageSize,
           swimTypeOne: swimTypeOne,
           areaRegion: event.target.value,
+          spNameOrAddress: spNameOrAddress,
           hadMore: true,
           isSwitch: true,
           orderFlag: orderFlag,
@@ -81,6 +84,7 @@ const Pools = ({ dispatch, pools, loading }) => {
 	      <div style={{width:'75%'}}>
 		    <SearchBar
 		      placeholder="输入游泳场所名称"
+		      value={spNameOrAddress}
 			  onSubmit={value => searchBarClick(value)}
 		      onBlur={value => searchBarClick(value)}
 		      onChange={value => searchBarChange(value)}

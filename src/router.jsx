@@ -20,6 +20,10 @@ import Map from './routes/Map';
 import URI from 'urijs';
 import confidential from './conf/Confidential';
 import wx from './routes/wx';
+import Ponds from './routes/Ponds';
+import Comment from './routes/Comment';
+import CommentPage from './routes/CommentPage';
+
 
 function generateGetCodeUrl(redirectURL) {
 
@@ -85,7 +89,10 @@ export default ({ history,app }) => {
         <Route path="/fb" component={Feedback} />
         <Route path="/personalInfo" component={PersonalInfo} />
         <Route path="/map" component={Map} />
-
+        <Route path="/ponds" component={Ponds} />
+    	<Route path="/comment" component={Comment} />
+      	<Route path="/commentPage" component={CommentPage} />
+      
         <Route path="*" component={NotFound} />
     </Router>
   );

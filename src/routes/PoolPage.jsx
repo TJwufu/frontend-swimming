@@ -48,7 +48,7 @@ const PoolPage = ({ location, pools, loading }) => {
           hashHistory.goBack();
         }}
       >
-        泳池详情
+        场所详情
       </NavBar>
       <List className={styles.list}  style={{paddingTop: '.8rem'}}>
       	<Link to={`/photoAlbum/${currentItem.id}`}> 
@@ -59,20 +59,59 @@ const PoolPage = ({ location, pools, loading }) => {
             <div ><strong>{currentItem.spName}</strong></div>
             <div className={styles.address_area}>地址：<Link to={`map`}><span>{currentItem.address}</span><span style={{ fontSize: '0.2rem',marginLeft:'0.1rem' }}>(点击导航)</span></Link></div>
             {currentItem.principal == null || currentItem.principal == ''?null:<div className={styles.address_phone}>负责人：<span>{currentItem.principal}</span></div>}
-            {currentItem.phone == null || currentItem.phone == ''?null:<div className={styles.address_phone} onClick={callPhone.bind(this,currentItem.phone)}>电话：<span>{currentItem.phone}</span></div>}
+            {currentItem.phone == null || currentItem.phone == ''?null:<div className={styles.address_phone} onClick={callPhone.bind(this,currentItem.phone)}>电话：<span  style={{ color: 'blue'}}>{currentItem.phone}</span></div>}
             {currentItem.completionDate == null || currentItem.completionDate == ''?null:<div className={styles.address_phone}>建成年月：<span>{currentItem.completionDate}</span></div>}
             {currentItem.openObject == null || currentItem.openObject == ''?null:<div className={styles.address_phone}>开放性质：<span>{currentItem.openObject}</span></div>}
             {currentItem.remark == null || currentItem.remark == ''?null:<div className={styles.address_phone}>开放时间：<span>{currentItem.remark}</span></div>}
             {currentItem.travelInformation == null || currentItem.travelInformation == ''?null:<div className={styles.address_phone}>交通信息：<span>{currentItem.travelInformation}</span></div>}
+            {currentItem.waterAcreage == null || currentItem.waterAcreage == ''?null:<div className={styles.address_phone}>水域面积(㎡)：<span>{currentItem.waterAcreage}</span><Link to={`ponds`}><span style={{ fontSize: '0.2rem',marginLeft:'0.1rem' }}>(查看详情)</span></Link></div>}
             
           </div>
         </div>
+        {/*
         <Item style={{ borderBottom: '1px solid #ddd' }}>
           <Flex direction="row" justify="between" className={styles.mark}>
-            <Flex.Item>评分 : <StarIcons currentStarNumber={currentItem.score} maxStarNumber="5" /></Flex.Item>
-            <Icon type="phone" className={styles.phone_style} />
+            <Flex.Item>评分 : <Link to={`commentPage`}><StarIcons currentStarNumber={currentItem.score} maxStarNumber="5" /></Link></Flex.Item>
+            <Icon type="phone" className={styles.phone_style}  onClick={callPhone.bind(this,currentItem.phone)}/>
           </Flex>
         </Item>
+        */}
+        <Item style={{ borderBottom: '1px solid #ddd' }}>
+          <Flex direction="row" justify="between" className={styles.mark}>
+            <Flex.Item>网友点评({currentItem.comments == null?0:currentItem.comments.length}) </Flex.Item>
+            <Link to={`commentPage`}>
+            	<Icon type="right" className={styles.right_icon_style}/>
+            </Link>
+          </Flex>
+        </Item>
+        {
+          currentItem.comments == null ?null : currentItem.comments.map((ele, index) => {
+        		  return index >1?null : (<Item multipleLine align="top" wrap key={ele.id}>
+                  <div className={styles.contain}>
+                    <div className={styles.image}>
+                      <img src={ele.headimgurl == '' ?'http://img.release.1yd.me/Fnq3JmmOan-yAHtJHk-n9-o3Qqbr': ele.headimgurl}/>
+                    </div>
+                    <div className={styles.star}>
+                      <div>
+                        <div className={styles.times}>
+                          <Flex>
+                        	<div className={styles.item_title}>{ele.nickname}</div>
+                        	<div className={styles.item_date}>{ele.createdTime}</div>
+                          </Flex>
+                        </div>
+                        <div className={styles.times}>打分 <StarIcons currentStarNumber={ele.totalScore} maxStarNumber="5"/></div>
+                      </div>
+          		      <WhiteSpace size="lg" />
+                      <div>
+        	              <div className={styles.word}>
+        	                <div className={styles.item_sub_title}>{ele.content}</div>
+        	              </div>
+                      </div>
+                    </div>
+                  </div>
+                </Item>)
+      	  })
+        }
         <Flex className={styles.mark}>
           <span className={styles.service_line}>
             服务 :
@@ -81,7 +120,7 @@ const PoolPage = ({ location, pools, loading }) => {
           {
             currentItem.serviceTypes.map((ele, index) => {
               {
-                return ele == '002' || ele == '003' || ele == '004'?null:(<img className={styles.icon_line} src={iconServices[ele]} alt={ele} key={ele}/>)
+                return ele == '002' || ele == '003' || ele == '004' || iconServices[ele] == null?null:(<img className={styles.icon_line} src={iconServices[ele]} alt={ele} key={ele}/>)
               	
               }
     	      

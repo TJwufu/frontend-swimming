@@ -1,7 +1,7 @@
 import { parse } from 'qs';
 import pathToRegexp from 'path-to-regexp';
 import { routerRedux } from 'dva/router';
-import { fetchPoolList, fetchPool } from '../services/poolService';
+import { fetchPoolList, fetchPool, fetchUserCommentSubmit } from '../services/poolService';
 import {fetchTokenByCode,fetchWXJSConf} from '../services/wechatService';
 
 export default {
@@ -21,6 +21,7 @@ export default {
       phone: '',
       temperature: '',
       waterQuality: '',
+      waterAcreage: '',
       serviceTypes: [],
       id: '',
       longitude: '',
@@ -30,6 +31,8 @@ export default {
       waterQualityDetail: {}, // 水质详情
       memberCards: [],	// 会员卡列表
       coupons: [],	// 优惠券列表
+      ponds: [], // 泳池列表
+      comments: [], // 用户评论列表
     },
     hadMore: true,
     pageNo: 0,
@@ -75,12 +78,15 @@ export default {
       history.listen((location) => {
         if (location.pathname === '/pools' || location.pathname === '/home') {
           //console.info("latitude:",window.app._models[1].state.latitude,"longitude:",window.app._models[1].state.longitude);
+          //console.info("pools page window.app._models[1].state.qParam",window.app._models[1].state.qParam);
+          var qParam = window.app._models[1].state.qParam;
           dispatch({
             type: 'query',
-            payload: {
+            payload: qParam != null? qParam: {
               pageSize: 9000,
               swimTypeOne: '',
               areaRegion: '',
+              orderFlag: '',
               typeIndex: 0,
               pageNo: 0,
               hadMore: true,
@@ -145,6 +151,9 @@ export default {
 	      payload.longitude = "121.5137";
 	      payload.latitude = "31.30293";  
       }
+      // 记录全局变量：检索条件
+      window.app._models[1].state.qParam = payload;
+      //console.info("window.app._models[1].state.qParam",payload);
       //alert(payload.longitude +","+ payload.latitude);
       const { data } = yield call(fetchPoolList, parse(payload));
       //console.info(data.data);
@@ -244,7 +253,11 @@ export default {
       } else {
         console.inifo("失败，系统异常.");
       }
-    }
+    },
+
+    * userCommentSubmit({ payload }, { call, put }) {
+      const { data } = yield call(fetchUserCommentSubmit, parse(payload));
+    },
   },
   reducers: {
     querySuccess(state, action) {

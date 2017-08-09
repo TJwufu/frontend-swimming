@@ -25,3 +25,17 @@ export async function create(params) {
     body: qs.stringify(params),
   });
 }
+
+export async function fetchUserCommentSubmit(params) {
+	
+	console.info("qs.stringify(params)",params);
+//  return request(`${baseURL}/swim/wxComments/newb`, {
+//    method: 'post',
+//    headers: {
+//	      //'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+//	      'Content-Type': 'application/json;charset=utf-8',
+//	},
+//    body: params,
+//  });
+  return request(`${baseURL}/swim/wxComments/new?${qs.stringify(params)}`);
+}
