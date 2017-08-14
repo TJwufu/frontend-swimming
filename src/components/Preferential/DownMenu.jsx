@@ -35,16 +35,17 @@ class PopupContent extends React.Component {
     }
     console.info(type,sel);
     this.props.dispatch({
-        type: 'pools/query',
+        type: 'pools/queryByIsCoupon',
 	    payload: {
 	        pageSize: this.props.pools.pageSize,
 	        swimTypeOne: this.props.pools.swimTypeOne,
 	        areaRegion: this.props.pools.areaRegion,
 	        sereviceTypeStr: this.props.pools.sereviceTypeStr,
-	        spNameOrAddress: '',
+	        spNameOrAddress: this.props.pools.spNameOrAddress,
 	        hadMore: true,
 	        isSwitch: true,
 	        orderFlag: this.props.pools.orderFlag,
+	        isCoupon: "Y",
 	    }
       });
   };
@@ -157,8 +158,10 @@ const DownMenu = ({ pools,dispatch,type}) => {
       <div className={styles.head}>
 	    <div className={styles.active} onClick={onClick.bind(this,"Area")}><span>{qAreaRegion} <Icon style={{marginLeft:'0.10rem',color:'#DCDCDC'}} type="down" size="xs" /></span></div>
 	  	<div className={styles.active} onClick={onClick.bind(this,"SwimType")}><span>{qSwimTypeOne} <Icon style={{marginLeft:'0.10rem',color:'#DCDCDC'}} type="down" size="xs" /></span></div>
+	  	{/*
 	  	<div className={styles.active} onClick={onClick.bind(this,"Sorting")}><span>{qOrderFlag} <Icon style={{marginLeft:'0.10rem',color:'#DCDCDC'}} type="down" size="xs" /></span></div>
 	  	<div className={styles.active} onClick={onClick.bind(this,"Query")}><span>筛选 <Icon style={{marginLeft:'0.10rem',color:'#DCDCDC'}} type="down" size="xs" /></span></div>
+	  	*/}
 	  </div>
     </div>
   );

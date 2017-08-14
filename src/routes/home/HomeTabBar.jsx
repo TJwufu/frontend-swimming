@@ -63,7 +63,7 @@ const HomeTabBar = ({ dispatch, global, pools, infos, loading, title = '首页',
             });
             dispatch({
               type: 'pools/queryByIsCoupon',
-              payload: { pageSize: 100, isCoupon: "Y" }
+              payload: { pageSize: 9000, isCoupon: "Y" }
             });
           }
           }

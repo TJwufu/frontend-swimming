@@ -187,6 +187,11 @@ export default {
     * queryByIsCoupon({ payload }, { call, put }) {
       const { data } = yield call(fetchPoolList, parse(payload));
       //console.log("queryByIsCoupon data:",data);
+      yield put({
+	      type: 'updateQueryKey',
+	      payload: { pageNo: 1, ...payload }
+	    });
+      
       if (data.data) {
         yield put({
           type: 'showPoolByIsCoupon',
