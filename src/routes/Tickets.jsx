@@ -1,5 +1,5 @@
 /* eslint import/extensions: 0 */
-import { SearchBar } from 'antd-mobile';
+import { SearchBar, NavBar } from 'antd-mobile';
 import React, { PropTypes } from 'react';
 import {connect} from 'dva';
 import {hashHistory} from 'dva/router';
@@ -12,7 +12,16 @@ import LayoutWithTabBar from '../components/Layout/LayoutWithTabBar';
 const Tickets = ({dispatch, pools}) => {
   return (
 	  <div>
-	    <LayoutWithTabBar title="票券预定" style={{display: 'flex', flexDirection: 'column'}} location={location} hiddenTabBar="false" hiddenBackButton="false">
+		  <NavBar
+		      style={{backgroundColor: '#108ee9',  width: '100%', top: '0px', zIndex: 9 }}
+		      mode="dark"
+		      onLeftClick={ () => {
+		        hashHistory.goBack();
+		      }}
+		    >
+		  票券信息
+		  </NavBar>
+	    
 	      <div className={styles.card}>
             <img className={styles.card_img} src='http://oiu42aq9j.bkt.clouddn.com/my_advice.png'/>
             <span className={styles.card_word}>优惠票</span>
@@ -24,7 +33,6 @@ const Tickets = ({dispatch, pools}) => {
 	      </div>
 	      <MemberCardList memberCards={pools.currentItem.memberCards}/>
 	      <CommentList/>
-	    </ LayoutWithTabBar >
 	  </div>
   );
 };

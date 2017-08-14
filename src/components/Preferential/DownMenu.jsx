@@ -41,7 +41,7 @@ class PopupContent extends React.Component {
 	        swimTypeOne: this.props.pools.swimTypeOne,
 	        areaRegion: this.props.pools.areaRegion,
 	        sereviceTypeStr: this.props.pools.sereviceTypeStr,
-	        spNameOrAddress: this.props.pools.spNameOrAddress,
+	        spNameOrAddressB: this.props.pools.spNameOrAddressB,
 	        hadMore: true,
 	        isSwitch: true,
 	        orderFlag: this.props.pools.orderFlag,
@@ -135,6 +135,7 @@ const DownMenu = ({ pools,dispatch,type}) => {
   //  ins.show(<Button onClick={() => ins.hide()}>关闭</Button>);
   // },
   const qAreaRegion = pools.areaRegion !=null && pools.areaRegion!='' ? pools.areaRegion: '区域';
+  //console.info(pools);
   var qSwimTypeOne = pools.swimTypeOne;
   if(qSwimTypeOne == '001'){
 	  qSwimTypeOne = '室内游泳馆';

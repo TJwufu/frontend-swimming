@@ -41,7 +41,7 @@ class PopupContent extends React.Component {
 	        swimTypeOne: this.props.pools.swimTypeOne,
 	        areaRegion: this.props.pools.areaRegion,
 	        sereviceTypeStr: this.props.pools.sereviceTypeStr,
-	        spNameOrAddress: '',
+	        spNameOrAddress: this.props.pools.spNameOrAddress,
 	        hadMore: true,
 	        isSwitch: true,
 	        orderFlag: this.props.pools.orderFlag,

@@ -66,6 +66,7 @@ export default {
     orderFlag: '',	// 排序标识
     sereviceTypeStr: '', //提供服务类型
     spNameOrAddress: '',
+    spNameOrAddressB: '',
     queryParam:{
     	qSwimTypeOne:'',
     	qAreaRegion:'',
@@ -86,6 +87,7 @@ export default {
               pageSize: 9000,
               swimTypeOne: '',
               areaRegion: '',
+              spNameOrAddress: '',
               orderFlag: '',
               typeIndex: 0,
               pageNo: 0,
@@ -137,7 +139,9 @@ export default {
 	* fetchTokenByCode({ payload }, { call, put }) {
 		const { data } = yield call(fetchTokenByCode, payload.code);
 		payload.userInfo = data.data;
-		console.info("fetchTokenByCode:",payload.userInfo);
+		window.app._models[1].state.userInfo = data.data;
+		//alert(window.app._models[1].state.userInfo);
+		//console.info("fetchTokenByCode:",payload.userInfo);
 		yield put({
 		  type: 'updateQueryKey',
 		  payload: { pageNo: 1, ...payload }
@@ -157,6 +161,7 @@ export default {
       //alert(payload.longitude +","+ payload.latitude);
       const { data } = yield call(fetchPoolList, parse(payload));
       //console.info(data.data);
+      console.info("updateQueryKey:",payload);
       yield put({
         type: 'updateQueryKey',
         payload: { pageNo: 1, ...payload }
@@ -185,13 +190,14 @@ export default {
       }
     },
     * queryByIsCoupon({ payload }, { call, put }) {
-      const { data } = yield call(fetchPoolList, parse(payload));
       //console.log("queryByIsCoupon data:",data);
       yield put({
 	      type: 'updateQueryKey',
 	      payload: { pageNo: 1, ...payload }
 	    });
-      
+
+      payload.spNameOrAddress = payload.spNameOrAddressB;
+      const { data } = yield call(fetchPoolList, parse(payload));
       if (data.data) {
         yield put({
           type: 'showPoolByIsCoupon',

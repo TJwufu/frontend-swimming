@@ -58,7 +58,7 @@ const Pools = ({ dispatch, pools, loading }) => {
         }
     });
   };
-  var _searchVal = '';
+  var _searchVal = spNameOrAddress;
   const searchBarChange= (_val,event) => {
 	  _searchVal = _val;
   };
@@ -67,13 +67,13 @@ const Pools = ({ dispatch, pools, loading }) => {
         type: 'pools/query',
         payload: {
             pageSize: pageSize,
-            swimTypeOne: '',
+            swimTypeOne: swimTypeOne,
             spNameOrAddress: _searchVal,
             spName: _val,
-            areaRegion: '',
+            areaRegion: areaRegion,
             hadMore: true,
             isSwitch: true,
-            orderFlag: '',
+            orderFlag: orderFlag,
           }
       });
   };
@@ -83,8 +83,8 @@ const Pools = ({ dispatch, pools, loading }) => {
       <div className={styles.headSearch}>
 	      <div style={{width:'75%'}}>
 		    <SearchBar
+		      defaultValue={spNameOrAddress}
 		      placeholder="输入游泳场所名称"
-		      value={spNameOrAddress}
 			  onSubmit={value => searchBarClick(value)}
 		      onBlur={value => searchBarClick(value)}
 		      onChange={value => searchBarChange(value)}

@@ -31,16 +31,16 @@ class CommentContent extends React.Component {
   onSubmit = () => {
 	  var payload = {
 			  swimPoolId: this.props.pools.currentItem.id,
-			  openid: this.props.pools.userInfo.openid,
-			  nickname: this.props.pools.userInfo.nickname,
-			  headimgurl: this.props.pools.userInfo.headimgurl,
+			  openid: window.app._models[1].state.userInfo.openid,
+			  nickname: window.app._models[1].state.userInfo.nickname,
+			  headimgurl: window.app._models[1].state.userInfo.headimgurl,
 			  totalScore: this.state.totalScore,
 			  szScore: this.state.szScore,
 			  hjScore: this.state.hjScore,
 			  hsScore: this.state.hsScore,
 			  content: this.state.content,
 	    };
-	  console.info(payload);
+	  //console.info(payload);
 	  this.props.dispatch({
 	        type: 'pools/userCommentSubmit',
 		    payload: payload
@@ -55,7 +55,7 @@ class CommentContent extends React.Component {
 			  <div className={styles.headd}>
 		    	<Flex>
 			      <div style={{fontSize: "0.30rem",width: "20%"}} onClick={ () => { hashHistory.goBack();}}>取消</div>
-			      <div style={{fontSize: "0.38rem",width: "60%",textAlign: "center"}}>江湾体育场游泳馆</div>
+			      <div style={{fontSize: "0.38rem",width: "60%",textAlign: "center"}}>{this.props.pools.currentItem.spName}</div>
 			      <div style={{textAlign: "right",width: "20%"}}><Button type="primary" inline size="small" onClick={() => { this.onSubmit(); }} >发表</Button></div>
 			    </Flex>
 			  </div>
@@ -118,7 +118,6 @@ class CommentContent extends React.Component {
 		            autoHeight
 		            placeholder={"亲，请留下您尊贵的评价..."}
 		    	    rows={5}
-		    	    count={150}
 		            labelNumber={5}
 		    	    onChange={value => this.textareaItemChange(value)}
 		          />

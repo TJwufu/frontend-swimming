@@ -42,6 +42,18 @@ const HomeTabBar = ({ dispatch, global, pools, infos, loading, title = '首页',
                 navTitle: '首页'
               }
             });
+            dispatch({
+            type: 'pools/query',
+            payload: { pageSize: 9000,
+                swimTypeOne: '',
+                areaRegion: '',
+                orderFlag: '',
+                spNameOrAddress: '',
+                typeIndex: 0,
+                pageNo: 0,
+                hadMore: true,
+                isSwitch: true, }
+          });
           }
           }
         >
@@ -63,7 +75,7 @@ const HomeTabBar = ({ dispatch, global, pools, infos, loading, title = '首页',
             });
             dispatch({
               type: 'pools/queryByIsCoupon',
-              payload: { pageSize: 9000, isCoupon: "Y" }
+              payload: { pageSize: 9000, isCoupon: "Y", spNameOrAddressB: "", areaRegion: "", swimTypeOne: "" }
             });
           }
           }

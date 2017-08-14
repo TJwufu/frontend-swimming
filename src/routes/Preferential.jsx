@@ -22,10 +22,9 @@ function callback(key) {
 const Preferential = ({location, dispatch, pools, loading}) => {
 
   const {promotions} = pools;
-  const { swimTypeOne,orderFlag, areaRegion, spNameOrAddress} = pools;
+  const { swimTypeOne,orderFlag, areaRegion, spNameOrAddressB} = pools;
   let dataList = promotions.dataList == null?[]:promotions.dataList;
-
-  var _searchVal = '';
+  var _searchVal = spNameOrAddressB;
   const searchBarChange= (_val,event) => {
 	  _searchVal = _val;
   };
@@ -34,7 +33,7 @@ const Preferential = ({location, dispatch, pools, loading}) => {
         type: 'pools/queryByIsCoupon',
         payload: {
             swimTypeOne: swimTypeOne,
-            spNameOrAddress: _searchVal,
+            spNameOrAddressB: _searchVal,
             areaRegion: areaRegion,
             hadMore: true,
             isSwitch: true,
@@ -49,6 +48,7 @@ const Preferential = ({location, dispatch, pools, loading}) => {
 	      <div className={styles.headSearch}>
 		    <div style={{width:'85%'}}>
 			    <SearchBar
+			      defaultValue={spNameOrAddressB}
 			      placeholder="输入游泳场所名称"
 				  onSubmit={value => searchBarClick(value)}
 			      onBlur={value => searchBarClick(value)}
