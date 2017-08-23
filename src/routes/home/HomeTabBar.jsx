@@ -80,6 +80,7 @@ const HomeTabBar = ({ dispatch, global, pools, infos, loading, title = '首页',
           }
           }
         />
+        {/*
         <TabBar.Item
           icon={{uri: 'http://oiu42aq9j.bkt.clouddn.com/tabbar-info.png'}}
           selectedIcon={{uri: 'http://oiu42aq9j.bkt.clouddn.com/tabbar-info-selected.png'}}
@@ -102,6 +103,7 @@ const HomeTabBar = ({ dispatch, global, pools, infos, loading, title = '首页',
           }
           }
         />
+        */}
         <TabBar.Item
           icon={{uri: 'http://oiu42aq9j.bkt.clouddn.com/tabbar-mine.png'}}
           selectedIcon={{uri: 'http://oiu42aq9j.bkt.clouddn.com/tabbar-mine-selected.png'}}
