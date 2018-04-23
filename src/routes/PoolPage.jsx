@@ -56,7 +56,12 @@ const PoolPage = ({ location, pools, loading }) => {
         </Link>
         <div className={styles.address_line}>
           <div className={styles.address_item}>
-            <div ><strong>{currentItem.spName}</strong></div>
+            <div className={styles.title_name}>
+              <strong>{currentItem.spName}</strong>
+              <div className={styles.seventhRow}>
+                <span>空闲</span>
+              </div>
+            </div>
             <div className={styles.address_area}>地址：<Link to={`map`}><span>{currentItem.address}</span><span style={{ fontSize: '0.2rem',marginLeft:'0.1rem' }}>(点击导航)</span></Link></div>
             {currentItem.principal == null || currentItem.principal == ''?null:<div className={styles.address_phone}>负责人：<span>{currentItem.principal}</span></div>}
             {currentItem.phone == null || currentItem.phone == ''?null:<div className={styles.address_phone} onClick={callPhone.bind(this,currentItem.phone)}>电话：<span  style={{ color: 'blue'}}>{currentItem.phone}</span></div>}

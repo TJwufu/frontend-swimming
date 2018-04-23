@@ -28,6 +28,9 @@ const PoolItem = ({ rowData, sectionId, rowId }) => (
         </div>
         */}
         <div className={styles.content}>
+          <div className={styles.seventhRow}>
+            <span>空闲</span>
+          </div>
           <div className={styles.thirdRow}><StarIcons currentStarNumber={rowData.score} maxStarNumber="5" /></div>
           <div className={styles.fifthRow}>{rowData.distance}</div>
         </div>
@@ -41,5 +44,4 @@ PoolItem.propTypes = {
   sectionId: PropTypes.string.isRequired,
   rowId: PropTypes.string.isRequired
 };
-
 export default PoolItem;

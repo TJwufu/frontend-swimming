@@ -24,6 +24,11 @@ import Ponds from './routes/Ponds';
 import Comment from './routes/Comment';
 import CommentPage from './routes/CommentPage';
 
+import Login from './routes/login/Login';
+import DateReport from './routes/report/DateReport';
+import SwimList from './routes/report/SwimList';
+import SwimReport from './routes/report/SwimReport';
+
 
 function generateGetCodeUrl(redirectURL) {
 
@@ -79,7 +84,6 @@ export default ({ history,app }) => {
         <Route path="/photoAlbum/:poolId" component={PhotoAlbum} />
         <Route path="/profile" component={Profile} />
         <Route path="/lifesaver" component={LifeSaver} />
-        <Route path="/profile" component={Profile} />
         <Route path="/coach" component={CoachPage} />
         <Route path="/ticket" component={Tickets} />
         <Route path="/ticket/:poolId" component={Tickets} />
@@ -90,10 +94,16 @@ export default ({ history,app }) => {
         <Route path="/personalInfo" component={PersonalInfo} />
         <Route path="/map" component={Map} />
         <Route path="/ponds" component={Ponds} />
-    	<Route path="/comment" component={Comment} />
-      	<Route path="/commentPage" component={CommentPage} />
+    	  <Route path="/comment" component={Comment} />
+        <Route path="/commentPage" component={CommentPage} />
+        
+        <Route path="/login" component={Login} />
+        <Route path="/dateReport" component={DateReport} />
+        <Route path="/swimList" component={SwimList} />
+        <Route path="/swimReport" component={SwimReport} />
       
         <Route path="*" component={NotFound} />
+        
     </Router>
   );
 };
