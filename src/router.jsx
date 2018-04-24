@@ -28,6 +28,7 @@ import Login from './routes/login/Login';
 import DateReport from './routes/report/DateReport';
 import SwimList from './routes/report/SwimList';
 import SwimReport from './routes/report/SwimReport';
+import TrainReport from './routes/report/TrainReport';
 
 
 function generateGetCodeUrl(redirectURL) {
@@ -101,6 +102,7 @@ export default ({ history,app }) => {
         <Route path="/dateReport" component={DateReport} />
         <Route path="/swimList" component={SwimList} />
         <Route path="/swimReport" component={SwimReport} />
+        <Route path="/trainReport" component={TrainReport} />
       
         <Route path="*" component={NotFound} />
         

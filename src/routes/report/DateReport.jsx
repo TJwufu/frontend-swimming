@@ -31,7 +31,7 @@ const DateReport = ({ pools}) => {
 				</Link>
 			</List>
 			<List className={styles.list}>
-				<Link to={'personalInfo'}>
+				<Link to={'trainReport'}>
 					<Item
 					thumb="http://img.release.1yd.me/trainNum.png"
 					arrow="horizontal"

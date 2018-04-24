@@ -2,6 +2,7 @@
 import { WhiteSpace, WingBlank, Button, List, Icon, Flex, Tag, NavBar } from 'antd-mobile';
 import React, { PropTypes } from 'react';
 import { connect } from 'dva';
+import {hashHistory} from 'dva/router';
 import styles from './SwimList.less';
 import { Link } from 'dva/router';
 
@@ -35,7 +36,7 @@ const SwimList = ({ pools}) => {
 				</Link>
 			</List>
 			<List className={styles.list1}>
-				<Link to={'personalInfo'}>
+				<Link to={'swimReport'}>
 					<Item
 						extra="上报人次：23人"
 						onClick={() => {}}
