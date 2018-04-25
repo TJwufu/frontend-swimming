@@ -17,7 +17,6 @@ class SwimReport extends React.Component {
 		date: formatTime
 	}
 	render(){
-		console.log(this.state)
 		return (
 			<div style={{height: 'auto', paddingTop: '0.9rem'}}>
 				<NavBar

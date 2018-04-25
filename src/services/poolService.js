@@ -28,7 +28,6 @@ export async function create(params) {
 
 export async function fetchUserCommentSubmit(params) {
 	
-	console.info("qs.stringify(params)",params);
 //  return request(`${baseURL}/swim/wxComments/newb`, {
 //    method: 'post',
 //    headers: {
