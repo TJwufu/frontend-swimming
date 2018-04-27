@@ -8,7 +8,9 @@ import StarIcons from '../components/Common/StarIcons';
 import LayoutWithTabBar from './home/HomeTabBar';
 import styles from './PoolPage.less';
 import { Portal } from 'react-portal';
-import { WxImage, CoachTrain } from '../components/Coach'
+import { WxImage } from '../components/Coach'
+import initReactFastclick from 'react-fastclick';
+initReactFastclick();
 const Item = List.Item;
 const PoolPage = ({ location, pools, loading }) => {
   const { currentItem } = pools;
@@ -73,7 +75,7 @@ const PoolPage = ({ location, pools, loading }) => {
             {currentItem.remark == null || currentItem.remark == '' ? null : <div className={styles.address_item_div}>开放时间：<span>{currentItem.remark}</span></div>}
             {currentItem.travelInformation == null || currentItem.travelInformation == '' ? null : <div className={styles.address_item_div}>交通信息：<span>{currentItem.travelInformation}</span></div>}
             {currentItem.waterAcreage == null || currentItem.waterAcreage == '' ? null : <div className={styles.address_item_div}>水域面积(㎡)：<span>{currentItem.waterAcreage}</span><Link to={`ponds`}><span style={{ fontSize: '0.23rem', marginLeft: '0.1rem' }}>(查看详情)</span></Link></div>}
-            {currentItem.licenseUrl == '' ? null : <div className={styles.address_item_div}>高危许可证：<span><WxImage dataSrc={currentItem.licenseUrl} /></span>
+            {currentItem.licenseUrl !== '' ? null : <div className={styles.address_item_div}>高危许可证：<span><WxImage dataSrc={currentItem.spAvatar} /></span>
             </div>}
           </div>
         </div>
