@@ -1,51 +1,30 @@
 import React, { Component, PropTypes } from 'react';
 import { Modal, List, Button, WhiteSpace, WingBlank } from 'antd-mobile';
-import WxImageViewer from 'react-wx-images-viewer';
+import Viewer from 'react-viewer';
+import 'react-viewer/dist/index.css';
 class WxImage extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      imags: [props.dataSrc],
-      index: 0,
-      isOpen: false
+      visible: false,
     };
-  }
-  onClose = () => {
-    this.setState({
-      isOpen: false
-    })
-  }
-
-  openViewer(index) {
-    console.log(this)
-    this.setState({
-      index,
-      isOpen: true
-    })
   }
 
   render() {
-    const {
-      imags,
-      index,
-      isOpen
-    } = this.state;
-
     return (
-      <div className="app">
-        <div className="img-list">
-          <button onClick={this.openViewer.bind(this, 0)}>点击打开图片</button>
-          <div className="img">
-            <img src={this.state.imags[0]} alt="" onClick={this.openViewer.bind(this)} width="100%" height="auto" />
-          </div>
-
-        </div>
-        {
-          isOpen ? <WxImageViewer onClose={this.onClose} urls={this.state.imags} index={index} /> : ""
-        }
-      </div>
-    )
+      <span>
+        <a src="#" style={{ color: 'blue' }} onClick={() => { this.setState({ visible: !this.state.visible }); }}>查看</a>
+        <Viewer
+          visible={this.state.visible}
+          onClose={() => { this.setState({ visible: false }) }}
+          onMaskClick={() => { this.setState({ visible: false }) }}
+          images={[{ src: this.props.dataSrc, alt: '' }]}
+          rotatable={false}
+          scalable={false}
+          attribute={false}
+        />
+      </span>
+    );
   }
 }
 WxImage.propTypes = {
