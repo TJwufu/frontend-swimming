@@ -11,13 +11,13 @@ const PoolItem = ({ rowData, sectionId, rowId }) => (
       </div>
       <div className={styles.infomation}>
         <div className={styles.content}>
-          <div className={styles.firstRow}>{rowData.spName!=null && rowData.spName.length > 13? `${rowData.spName.slice(0,13)}...` : rowData.spName}</div>
+          <div className={styles.firstRow}>{rowData.spName != null && rowData.spName.length > 13 ? `${rowData.spName.slice(0, 13)}...` : rowData.spName}</div>
           {/* 取消水质展示
           <div className={styles.forthRow}><span>水质：</span><span className={styles.forthSpan}>优</span></div>
           */}
         </div>
         <div className={styles.content}>
-          <div className={styles.secondRow}>{rowData.address!=null && rowData.address.length > 15? `${rowData.address.slice(0,15)}...` : rowData.address}</div>
+          <div className={styles.secondRow}>{rowData.address != null && rowData.address.length > 15 ? `${rowData.address.slice(0, 15)}...` : rowData.address}</div>
           {/* 场内人数位置调整
           <div className={styles.sixthRow}><span>场内人数：</span><span className={styles.sixthSpan}>低</span></div>
           */}
@@ -28,15 +28,15 @@ const PoolItem = ({ rowData, sectionId, rowId }) => (
         </div>
         */}
         <div className={styles.content}>
-          <div className={styles.seventhRow}>
-            <span>空闲</span>
-          </div>
+          {rowData.idleStatus === 1 && (<div className={styles.seventhRow}><span className={styles.free}>空闲</span></div>)}
+          {rowData.idleStatus === 2 && (<div className={styles.seventhRow}><span className={styles.tofullstrength}>接近满员</span></div>)}
+          {rowData.idleStatus === 3 && (<div className={styles.seventhRow}><span className={styles.fullstrength}>满员</span> </div>)}
           <div className={styles.thirdRow}><StarIcons currentStarNumber={rowData.score} maxStarNumber="5" /></div>
           <div className={styles.fifthRow}>{rowData.distance}</div>
         </div>
       </div>
     </Link>
-  </div>
+  </div >
 );
 
 PoolItem.propTypes = {
