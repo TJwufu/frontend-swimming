@@ -1,5 +1,6 @@
 /* eslint import/extensions: 0 */
-import { WhiteSpace, WingBlank, Button, List, DatePicker, InputItem, Icon, Flex, Tag, NavBar } from 'antd-mobile';
+import { WhiteSpace, WingBlank, Modal, Button, List, DatePicker, InputItem, Icon, Flex, Tag, NavBar, Toast } from 'antd-mobile';
+import { createForm } from 'rc-form';
 import moment from 'moment';
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
@@ -7,16 +8,107 @@ import { connect } from 'dva';
 import {hashHistory} from 'dva/router';
 import styles from './SwimReport.less';
 import { Link } from 'dva/router';
+import request from '../../utils/request';
+import qs from 'qs';
 
 const Item = List.Item;
 const Brief = Item.Brief;
+const alert = Modal.alert;
+const baseURL = 'http://swim.yudingnet.com'
 
 var formatTime = moment(Date.now());
 class SwimReport extends React.Component {
-	state = {
-		date: formatTime
+	constructor(props) {
+		super(props);
+        this.state = {
+			da: props.params,
+			loading: false,
+			maxDate: formatTime,
+			date: moment(parseInt(props.params.date)),
+			swimPool: {},
+			modal: false,
+			isLoading: true,
+			height: document.documentElement.clientHeight,
+			useBodyScroll: false,
+		};
 	}
+	
+	componentWillMount(){
+		this.handleSubmit();
+	}
+	handleSubmit = (e) => {
+		
+		request(`${baseURL}/swim/userRelations/get`,{
+			method: 'GET',
+			headers: {
+				'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
+			}
+        }).then((res)=>{
+			this.setState({swimPool: res.data.data})
+        });
+	}
+	handleSubmits = (e) => {
+		const year = moment(this.state.date).year()
+		var month = moment(this.state.date).month()+1
+		const date = moment(this.state.date).date()
+		const alert = Modal.alert;
+		if(month < 10){
+			month = '0' + month
+		}
+		const baseURL = 'http://swim.yudingnet.com'
+        var loginMes = {
+            popleNum: this.props.form.getFieldValue('number'),
+            reqDateTxt: year + '-' + month + '-' + date,
+            swimPoolId: this.state.swimPool.id
+		}
+		var check = {
+			popleNum: this.props.form.getFieldValue('number'),
+            reqDateTxt: year + '-' + month + '-' + date
+		}
+		request(`${baseURL}/swim/day/req/poples/wx/check?${qs.stringify(check)}`,{
+			method: 'GET',
+			headers: {
+				'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
+			}
+        }).then((res)=>{
+			if(res.data.data.flag == '0'){
+				request(`${baseURL}/swim/day/req/poples/wx/new?${qs.stringify(loginMes)}`,{
+					method: 'GET',
+					headers: {
+						'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
+					}
+				}).then((res)=>{
+					if(res.data.success == 'T'){
+						Toast.success('上报成功!', 1);
+						hashHistory.push('/swimList');
+					}
+				});
+			}else{
+				const alertInstance = alert('温馨提示', '数据已报过，要重新上报吗？', [
+					{ text: '取消', onPress: () => console.log('cancel') },
+					{ text: '确定', onPress: () => {
+						request(`${baseURL}/swim/day/req/poples/wx/new?${qs.stringify(loginMes)}`,{
+							method: 'GET',
+							headers: {
+								'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
+							}
+						}).then((res)=>{
+							if(res.data.success == 'T'){
+								Toast.success('上报成功!', 1);
+								hashHistory.push('/swimList');
+							}
+						});
+					}},
+				])
+				
+			}
+			
+        });
+	}
+	
 	render(){
+		const { getFieldProps } = this.props.form;
+		const { type } = this.state;
 		return (
 			<div style={{height: 'auto', paddingTop: '0.9rem'}}>
 				<NavBar
@@ -28,8 +120,8 @@ class SwimReport extends React.Component {
 				>
 					人次上报
 				</NavBar>
-				<div className={styles.title}>
-					桃浦游泳场馆
+				<div className={styles.title} onClick={this.handleSubmit}>
+					{this.state.swimPool.spName}
 				</div>
 				<section className={styles.content}>
 					<form>
@@ -37,21 +129,24 @@ class SwimReport extends React.Component {
 							mode="date"
 							title="上报时间"
 							value={this.state.date}
-          					onChange={date => this.setState({ date })}
+							onChange={date => this.setState({ date })}
+							maxDate={this.state.maxDate}
 						>
 							<List.Item arrow="horizontal">上报时间</List.Item>
 						</DatePicker>
 						<List>
-							<InputItem placeholder="请输入学会游泳人数">
+							<InputItem placeholder="请输入学会游泳人数" type="number" {...getFieldProps('number')}>
 								学会游泳人数
 							</InputItem>
 						</List>
 					</form>
 				</section>
+
 				<div className={styles.login}>
-					<button>提交</button>
+					<button onClick={this.handleSubmits}>提交</button>
 				</div>
 			</div>);
 	}
 }
-export default SwimReport;
+const SwimReports = createForm()(SwimReport)
+export default SwimReports;

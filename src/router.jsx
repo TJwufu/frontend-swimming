@@ -101,7 +101,7 @@ export default ({ history,app }) => {
         <Route path="/login" component={Login} />
         <Route path="/dateReport" component={DateReport} />
         <Route path="/swimList" component={SwimList} />
-        <Route path="/swimReport" component={SwimReport} />
+        <Route path="/swimReport/:date" component={SwimReport} />
         <Route path="/trainReport" component={TrainReport} />
       
         <Route path="*" component={NotFound} />
