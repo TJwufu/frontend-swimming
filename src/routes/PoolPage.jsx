@@ -57,7 +57,7 @@ const PoolPage = ({ location, pools, loading }) => {
           <div className={styles.address_item}>
             <div className={styles.seventhRow}>
               <div className={styles.seventhRow_title}>{currentItem.spName !== null && currentItem.spName.length > 15 ? `${currentItem.spName.slice(0, 15)}...` : currentItem.spName}</div>
-              {currentItem.idleStatus === 0 && (<span className={styles.free}>空闲</span>)}
+              {currentItem.idleStatus === 1 && (<span className={styles.free}>空闲</span>)}
               {currentItem.idleStatus === 2 && (<span className={styles.tofullstrength}>接近满员</span>)}
               {currentItem.idleStatus === 3 && (<span className={styles.fullstrength}>满员</span>)}
             </div>
