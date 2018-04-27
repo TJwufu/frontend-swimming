@@ -33,7 +33,6 @@ class PopupContent extends React.Component {
     }else if(type == 'query'){
     	this.props.pools.sereviceTypeStr = sel;
     }
-    console.info(type,sel);
     this.props.dispatch({
         type: 'pools/query',
 	    payload: {

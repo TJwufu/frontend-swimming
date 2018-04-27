@@ -17,19 +17,12 @@ const PoolList = ({ dataSource, loading, onEndReached }) => {
         <div key={`${sectionID}-${rowID}`} />
       )}
       renderRow={renderRow}
-      //      renderFooter={renderFooter}
-      //      scrollRenderAheadDistance={500}
-      //      scrollEventThrottle={10}
-      //      onEndReached={onEndReached}
-      //      onEndReachedThreshold={20}
-      //      initialListSize={10}
-
-      renderFooter={renderFooter}
-      scrollRenderAheadDistance={500}
+	    renderFooter={renderFooter}
+	    scrollRenderAheadDistance={500}
       scrollEventThrottle={20}
-      onEndReached={onEndReached}
-      onEndReachedThreshold={10}
-    //initialListSize={5}
+	    onEndReached={onEndReached}
+	    onEndReachedThreshold={10}
+	    //initialListSize={5}
     />
   );
 };
