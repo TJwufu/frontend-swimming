@@ -132,8 +132,8 @@ class SwimReport extends React.Component {
 							<List.Item arrow="horizontal">上报时间</List.Item>
 						</DatePicker>
 						<List>
-							<InputItem placeholder="请输入学会游泳人数" type="number" {...getFieldProps('number')}>
-								学会游泳人数
+							<InputItem placeholder="请输入游客人次" type="number" {...getFieldProps('number')}>
+								游客人次
 							</InputItem>
 						</List>
 					</form>
