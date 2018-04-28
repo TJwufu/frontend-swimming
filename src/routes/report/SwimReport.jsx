@@ -14,7 +14,7 @@ import qs from 'qs';
 const Item = List.Item;
 const Brief = Item.Brief;
 const alert = Modal.alert;
-const baseURL = 'http://swim.yudingnet.com'
+const baseURL = HOST
 
 var formatTime = moment(Date.now());
 class SwimReport extends React.Component {
@@ -27,9 +27,7 @@ class SwimReport extends React.Component {
 			date: moment(parseInt(props.params.date)),
 			swimPool: {},
 			modal: false,
-			isLoading: true,
-			height: document.documentElement.clientHeight,
-			useBodyScroll: false,
+			isLoading: true
 		};
 	}
 	
@@ -37,7 +35,6 @@ class SwimReport extends React.Component {
 		this.handleSubmit();
 	}
 	handleSubmit = (e) => {
-		
 		request(`${baseURL}/swim/userRelations/get`,{
 			method: 'GET',
 			headers: {
@@ -55,14 +52,14 @@ class SwimReport extends React.Component {
 		if(month < 10){
 			month = '0' + month
 		}
-		const baseURL = 'http://swim.yudingnet.com'
+		
         var loginMes = {
             popleNum: this.props.form.getFieldValue('number'),
             reqDateTxt: year + '-' + month + '-' + date,
             swimPoolId: this.state.swimPool.id
 		}
 		var check = {
-			popleNum: this.props.form.getFieldValue('number'),
+			swimPoolId: this.state.swimPool.id,
             reqDateTxt: year + '-' + month + '-' + date
 		}
 		request(`${baseURL}/swim/day/req/poples/wx/check?${qs.stringify(check)}`,{

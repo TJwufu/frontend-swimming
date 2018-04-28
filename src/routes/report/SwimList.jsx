@@ -11,7 +11,7 @@ import moment from 'moment';
 
 const Item = List.Item;
 const Brief = Item.Brief;
-const baseURL = 'http://swim.yudingnet.com'
+const baseURL = HOST
 
 var formatTime = moment(Date.now());
 class SwimList extends React.Component {
