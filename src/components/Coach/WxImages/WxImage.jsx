@@ -3,7 +3,6 @@ import { Modal, List, Button, WhiteSpace, WingBlank } from 'antd-mobile';
 import Viewer from 'react-viewer';
 import 'react-viewer/dist/index.css';
 import initReactFastclick from 'react-fastclick';
-import styles from './WxImage.less';
 initReactFastclick()
 class WxImage extends Component {
   constructor(props) {

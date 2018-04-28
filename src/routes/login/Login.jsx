@@ -16,7 +16,7 @@ class Login extends React.Component {
     }
     handleSubmit = (e) => {
         Toast.loading('登录中...', 2)
-        const baseURL = 'http://auth.yudingnet.com'
+        const baseURL = LOGIN
         var loginMes = {
             grant_type: 'password',
             username: this.refs.name.value,
@@ -31,7 +31,6 @@ class Login extends React.Component {
                 Toast.info('用户名密码错误');
                 return;
             }
-            console.log(res)
             sessionStorage.setItem('token',res.data.data.access_token);
             hashHistory.push('/dateReport')
         });

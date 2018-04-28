@@ -11,6 +11,7 @@ import qs from 'qs';
 
 const Item = List.Item;
 const Brief = Item.Brief;
+const baseURL = HOST
 
 class TrainReport extends React.Component {
     constructor(props) {
@@ -24,7 +25,6 @@ class TrainReport extends React.Component {
 		this.handleSubmit();
 	}
     handleSubmit = (e) => {
-		const baseURL = 'http://swim.yudingnet.com'
 		request(`${baseURL}/swim/userRelations/get`,{
 			method: 'GET',
 			headers: {
@@ -51,7 +51,7 @@ class TrainReport extends React.Component {
             </NavBar>
             <List className={styles.mylist}>
                 <Item  onClick={this.handleSubmit}>{this.state.swimPool.spName}</Item>
-                <Item>上报日期区间 2018-06-30至2018-08-30</Item>
+                <Item>上报日期区间 2018-07-01至2018-08-30</Item>
             </List>
             <section className={styles.content}>
                 <form>
