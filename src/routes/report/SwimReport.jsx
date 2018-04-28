@@ -14,7 +14,7 @@ import qs from 'qs';
 const Item = List.Item;
 const Brief = Item.Brief;
 const alert = Modal.alert;
-const baseURL = REPORTHOST
+const baseURL = HOST
 
 var formatTime = moment(Date.now());
 class SwimReport extends React.Component {

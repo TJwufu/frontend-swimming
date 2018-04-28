@@ -11,7 +11,7 @@ import qs from 'qs';
 
 const Item = List.Item;
 const Brief = Item.Brief;
-const baseURL = REPORTHOST
+const baseURL = HOST
 
 class TrainReport extends React.Component {
     constructor(props) {
