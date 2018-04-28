@@ -14,13 +14,20 @@ class WxImage extends Component {
   }
 
   handleChange(e) {
-    console.log(this)
     e.stopPropagation();
+    let viewerMask = document.getElementsByClassName('react-viewer-mask')[0]
+    viewerMask.style.background = '#333'
+    document.getElementById('root').style.overflow = 'hidden'
     document.body.style.paddingRight = '0';
-    document.body.className = 'describe_container'
-    // alert(111)
-    // this.setState({ visible: false })
-    // this.setState({ visible: true });
+    viewerMask.style.height = '100%'
+    let addClass = document.getElementsByClassName('react-viewer-close')[0]
+    let addIconClass = document.getElementsByClassName('react-viewer-icon')[0]
+    addClass.style.width = '.6rem'
+    addClass.style.height = '.6rem'
+    addClass.style.top = '.5rem'
+    addClass.style.right = '.5rem'
+    addClass.style.background = 'none'
+    addIconClass.style.fontSize = '.35rem'
   }
   render() {
     return (
@@ -28,7 +35,7 @@ class WxImage extends Component {
         <a src="#" style={{ color: 'blue' }} onClick={() => { this.setState({ visible: !this.state.visible }); }}>查看</a>
         <Viewer
           visible={this.state.visible}
-          onClose={() => { this.setState({ visible: false }) }}
+          onClose={() => { this.setState({ visible: false }); document.getElementById('root').style.overflow = 'auto' }}
           onMaskClick={this.handleChange.bind(this)}
           images={[{ src: this.props.dataSrc, alt: '' }]}
           rotatable={false}
@@ -36,7 +43,7 @@ class WxImage extends Component {
           attribute={false}
           changeable={false}
           noNavbar={true}
-        // container={document.getElementById("root")}
+          drag={false}
         />
       </span>
     );
