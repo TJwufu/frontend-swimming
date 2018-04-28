@@ -11,6 +11,7 @@ import qs from 'qs';
 
 const Item = List.Item;
 const Brief = Item.Brief;
+const baseURL = REPORTHOST
 
 class TrainReport extends React.Component {
     constructor(props) {
@@ -24,7 +25,6 @@ class TrainReport extends React.Component {
 		this.handleSubmit();
 	}
     handleSubmit = (e) => {
-		const baseURL = 'http://swim.yudingnet.com'
 		request(`${baseURL}/swim/userRelations/get`,{
 			method: 'GET',
 			headers: {

@@ -30,14 +30,17 @@ module.exports = function(webpackConfig, env) {
   var define = {
     "default": {
       "HOST": "http://swimming.51yundong.me", //http://192.168.2.176:8093
+      "REPORTHOST": "http://swimming.51yundong.me",
       "DEBUG": true
     },
     "development": {
       "HOST": "http://swim.yudingnet.com",
+      "REPORTHOST": "http://swim.yudingnet.com",
       "DEBUG": true
     },
     "production": {
       "HOST": "http://swimming.51yundong.me",
+      "REPORTHOST": "http://swimming.51yundong.me",
       "DEBUG": false
     }
   };

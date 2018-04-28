@@ -14,7 +14,7 @@ import qs from 'qs';
 const Item = List.Item;
 const Brief = Item.Brief;
 const alert = Modal.alert;
-const baseURL = 'http://swim.yudingnet.com'
+const baseURL = REPORTHOST
 
 var formatTime = moment(Date.now());
 class SwimReport extends React.Component {
@@ -52,7 +52,7 @@ class SwimReport extends React.Component {
 		if(month < 10){
 			month = '0' + month
 		}
-		const baseURL = 'http://swim.yudingnet.com'
+		
         var loginMes = {
             popleNum: this.props.form.getFieldValue('number'),
             reqDateTxt: year + '-' + month + '-' + date,
