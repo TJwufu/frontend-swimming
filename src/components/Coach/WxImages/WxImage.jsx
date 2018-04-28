@@ -16,25 +16,19 @@ class WxImage extends Component {
     e.stopPropagation();
     Toast.loading('正在加载...', 1.5, () => {
       this.setState({ visible: true }, () => {
-        document.getElementsByClassName('react-viewer-mask')[0].style.background = '#333'
+        document.getElementsByClassName('react-viewer-mask')[0].style.cssText = 'background:#333 !important'
         let addClass = document.getElementsByClassName('react-viewer-close')[0]
         document.querySelectorAll('.react-viewer-icon').forEach(div => {
-          div.style.fontSize = '.35rem'
+          div.style.cssText = 'font-size:.35rem !important'
         })
         document.querySelectorAll('.react-viewer-btn').forEach(div => {
-          div.style.width = '.6rem'
-          div.style.height = '.6rem'
-          div.style.background = 'none'
+          div.style.cssText = 'width:.6rem !important; height:.6rem !important; background:none !important'
         })
-        document.getElementsByClassName('react-viewer-footer')[0].style.bottom = '5%'
-        document.getElementsByClassName('react-viewer-toolbar')[0].style.height = '0.6rem'
-        document.getElementById('root').style.overflow = 'hidden'
-        document.body.style.paddingRight = '0';
-        addClass.style.width = '.6rem'
-        addClass.style.height = '.6rem'
-        addClass.style.top = '.5rem'
-        addClass.style.right = '.5rem'
-        addClass.style.background = 'none'
+        document.getElementsByClassName('react-viewer-footer')[0].style.cssText = 'bottom:5% !important'
+        document.getElementsByClassName('react-viewer-toolbar')[0].style.cssText = 'height:.6rem !important'
+        document.getElementById('root').style.cssText = 'overflow:hidden !important'
+        document.body.style.cssText = 'padding-right:0 !important';
+        addClass.style.cssText = 'width: .6rem !important; height:.6rem !important; top:.5rem !important; right:.5rem !important; background:none !important;'
       })
     });
 
