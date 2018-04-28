@@ -27,9 +27,7 @@ class SwimReport extends React.Component {
 			date: moment(parseInt(props.params.date)),
 			swimPool: {},
 			modal: false,
-			isLoading: true,
-			height: document.documentElement.clientHeight,
-			useBodyScroll: false,
+			isLoading: true
 		};
 	}
 	
@@ -37,7 +35,6 @@ class SwimReport extends React.Component {
 		this.handleSubmit();
 	}
 	handleSubmit = (e) => {
-		
 		request(`${baseURL}/swim/userRelations/get`,{
 			method: 'GET',
 			headers: {
@@ -62,7 +59,7 @@ class SwimReport extends React.Component {
             swimPoolId: this.state.swimPool.id
 		}
 		var check = {
-			popleNum: this.props.form.getFieldValue('number'),
+			swimPoolId: this.state.swimPool.id,
             reqDateTxt: year + '-' + month + '-' + date
 		}
 		request(`${baseURL}/swim/day/req/poples/wx/check?${qs.stringify(check)}`,{
