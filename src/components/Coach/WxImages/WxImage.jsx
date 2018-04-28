@@ -17,13 +17,14 @@ class WxImage extends Component {
     console.log(this)
     e.stopPropagation();
     document.body.style.paddingRight = '0';
+    document.body.className = 'describe_container'
     // alert(111)
     // this.setState({ visible: false })
     // this.setState({ visible: true });
   }
   render() {
     return (
-      <span className={styles.describe_container}>
+      <span>
         <a src="#" style={{ color: 'blue' }} onClick={() => { this.setState({ visible: !this.state.visible }); }}>查看</a>
         <Viewer
           visible={this.state.visible}
@@ -34,7 +35,8 @@ class WxImage extends Component {
           scalable={false}
           attribute={false}
           changeable={false}
-
+          noNavbar={true}
+        // container={document.getElementById("root")}
         />
       </span>
     );
