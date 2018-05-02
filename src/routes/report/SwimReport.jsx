@@ -47,12 +47,14 @@ class SwimReport extends React.Component {
 	handleSubmits = (e) => {
 		const year = moment(this.state.date).year()
 		var month = moment(this.state.date).month()+1
-		const date = moment(this.state.date).date()
+		var date = moment(this.state.date).date()
 		const alert = Modal.alert;
 		if(month < 10){
 			month = '0' + month
 		}
-		
+		if(date < 10){
+			date = '0' + date
+		}
         var loginMes = {
             popleNum: this.props.form.getFieldValue('number'),
             reqDateTxt: year + '-' + month + '-' + date,
