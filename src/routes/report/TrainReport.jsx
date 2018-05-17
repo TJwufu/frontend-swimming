@@ -47,7 +47,7 @@ class TrainReport extends React.Component {
 						hashHistory.goBack();
 					}}
 			>
-				培训人数上报
+            培训人次及人数上报
             </NavBar>
             <List className={styles.mylist}>
                 <Item  onClick={this.handleSubmit}>{this.state.swimPool.spName}</Item>
@@ -56,10 +56,13 @@ class TrainReport extends React.Component {
             <section className={styles.content}>
                 <form>
                     <List>
-                        <InputItem placeholder="请输入培训人数">
+                        <InputItem placeholder="请输入培训人次" labelNumber={6}>
+                            培训人次
+                        </InputItem>
+                        <InputItem placeholder="请输入培训人数" labelNumber={6}>
                             培训人数
                         </InputItem>
-                        <InputItem placeholder="请输入学会游泳人数">
+                        <InputItem placeholder="请输入学会游泳人数" labelNumber={6}>
                             学会游泳人数
                         </InputItem>
                     </List>

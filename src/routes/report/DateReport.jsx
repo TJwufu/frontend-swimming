@@ -37,7 +37,7 @@ const DateReport = ({ pools}) => {
 					thumb="http://img.release.1yd.me/trainNum.png"
 					arrow="horizontal"
 					onClick={() => {}}
-					><span className={styles.nameList}>培训人数上报</span></Item>
+					><span className={styles.nameList}>培训人次及人数上报</span></Item>
 				</Link>
 			</List>
 			<List className={styles.list}>
@@ -45,7 +45,7 @@ const DateReport = ({ pools}) => {
 					thumb="http://img.release.1yd.me/people.png"
 					onClick={() => {}}
 					extra="暂无数据"
-				><span className={styles.nameList}>学生游泳人次上报</span></Item>
+				><span className={styles.nameList}>中小学生学游泳人次上报</span></Item>
 			</List>
 		</section>
 	</div>);

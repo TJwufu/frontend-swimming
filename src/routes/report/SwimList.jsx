@@ -21,7 +21,7 @@ class SwimList extends React.Component {
 			isLoading: false,
 			hasMore: true,
 			pageNo: 1,
-			pageSize: 20,
+			pageSize: 10,
 			list: [],
 			dataSource: [],
 			date: formatTime,
@@ -43,7 +43,7 @@ class SwimList extends React.Component {
         });
 	}
 	genData = (pageNo = 1) => {
-		request(`${baseURL}/swim/day/req/poples/wx/search?${qs.stringify({pageNo:this.state.pageNo, pageSize: 20})}`,{
+		request(`${baseURL}/swim/day/req/poples/wx/search?${qs.stringify({pageNo:this.state.pageNo, pageSize: 10})}`,{
 			method: 'GET',
 			headers: {
 				'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
@@ -65,9 +65,7 @@ class SwimList extends React.Component {
 		});
 	}
 	onEndReached = (event) => {
-		console.log('01')
 		if (this.state.isLoading && !this.state.hasMore) {
-			console.log('0')
 		  return;
 		}
 		this.setState({ isLoading: true });
