@@ -38,6 +38,13 @@ const PoolPage = ({ location, pools, loading }) => {
   function callPhone(_phone) {
     return document.location = ('tel:' + _phone);
   }
+  // 跳转视频直播页面
+  function showLiveVideo(_liveVideoUrl){
+    if(_liveVideoUrl == null || _liveVideoUrl == ''){
+    	return;
+    }
+  	document.location = _liveVideoUrl;
+  }
 
   return (
     <div className={styles.normal}>
@@ -75,8 +82,8 @@ const PoolPage = ({ location, pools, loading }) => {
             {currentItem.remark == null || currentItem.remark == '' ? null : <div className={styles.address_item_div}>开放时间：<span>{currentItem.remark}</span></div>}
             {currentItem.travelInformation == null || currentItem.travelInformation == '' ? null : <div className={styles.address_item_div}>交通信息：<span>{currentItem.travelInformation}</span></div>}
             {currentItem.waterAcreage == null || currentItem.waterAcreage == '' ? null : <div className={styles.address_item_div}>水域面积(㎡)：<span>{currentItem.waterAcreage}</span><Link to={`ponds`}><span style={{ fontSize: '0.23rem', marginLeft: '0.1rem' }}>(查看详情)</span></Link></div>}
-            {currentItem.licenseUrl == '' ? null : <div className={styles.address_item_div}>高危许可证：<span><WxImage dataSrc={currentItem.licenseUrl} /></span>
-            </div>}
+            {currentItem.licenseUrl == '' ? null : <div className={styles.address_item_div}>高危许可证：<span><WxImage dataSrc={currentItem.licenseUrl} /></span></div>}
+            {currentItem.liveVideoUrl == '' ? null : <div className={styles.address_item_div}>实时监控：<span><span  onClick={showLiveVideo.bind(this, currentItem.liveVideoUrl)} style={{ marginLeft: '0.1rem', color: 'blue' }}>查看监控</span></span></div>}
           </div>
         </div>
         {/*

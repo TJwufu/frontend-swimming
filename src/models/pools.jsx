@@ -224,7 +224,7 @@ export default {
           nonceStr: data.data.nonceStr,
           signature: data.data.signature,
           jsApiList: [
-            'getLocation',
+            'getLocation', 'scanQRCode'
           ]
         };
         
