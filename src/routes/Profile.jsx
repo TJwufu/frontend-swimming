@@ -60,12 +60,15 @@ const Profile = ({ pools}) => {
 	          onClick={() => {}}
 	        ><span className={styles.nameList}>我的订单</span></Item>
 	      </List>
-	      <List>
-	        <Item
-	          thumb="http://oiu42aq9j.bkt.clouddn.com/my_card.png"
-	          arrow="horizontal"
-	          onClick={() => {}}
-	        ><span className={styles.nameList}>我的健康卡</span></Item>
+				<List>
+					<Link to={'healthCard'}>
+						<Item
+							thumb="http://oiu42aq9j.bkt.clouddn.com/my_card.png"
+							arrow="horizontal"
+							onClick={() => {}}
+						><span className={styles.nameList}>我的健康卡</span>
+						</Item>
+					</Link>
 	      </List>
 	    </section>
 	    <section className={styles.contact}>

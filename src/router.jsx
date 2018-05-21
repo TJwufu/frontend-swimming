@@ -16,6 +16,9 @@ import HomeTabBar from './routes/home/HomeTabBar';
 import WaterQuality from './routes/WaterQuality';
 import Feedback from './routes/Feedback';
 import PersonalInfo from './routes/personal/PersonalInfo';
+import HealthCard from './routes/health/HealthCard';
+import HealthApply from './routes/health/HealthApply';
+import Notice from './routes/health/Notice';
 import Map from './routes/Map';
 import URI from 'urijs';
 import confidential from './conf/Confidential';
@@ -93,6 +96,9 @@ export default ({ history,app }) => {
         <Route path="/wq" component={WaterQuality} />
         <Route path="/fb" component={Feedback} />
         <Route path="/personalInfo" component={PersonalInfo} />
+        <Route path="/healthCard" component={HealthCard} />
+        <Route path="/healthApply" component={HealthApply} />
+        <Route path="/notice" component={Notice} />
         <Route path="/map" component={Map} />
         <Route path="/ponds" component={Ponds} />
     	  <Route path="/comment" component={Comment} />

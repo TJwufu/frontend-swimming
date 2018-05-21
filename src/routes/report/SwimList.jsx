@@ -16,8 +16,8 @@ const baseURL = HOST
 var formatTime = moment(Date.now());
 class SwimList extends React.Component {
 	constructor(props) {
-        super(props);
-        this.state = {
+    super(props);
+    this.state = {
 			isLoading: false,
 			hasMore: true,
 			pageNo: 1,
