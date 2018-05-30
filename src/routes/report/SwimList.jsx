@@ -38,9 +38,9 @@ class SwimList extends React.Component {
 			headers: {
 				'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
 			}
-        }).then((res)=>{
+		}).then((res)=>{
 			this.setState({swimPool: res.data.data})
-        });
+		});
 	}
 	genData = (pageNo = 1) => {
 		request(`${baseURL}/swim/day/req/poples/wx/search?${qs.stringify({pageNo:this.state.pageNo, pageSize: 10})}`,{

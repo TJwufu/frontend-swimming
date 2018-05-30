@@ -20,7 +20,7 @@ var formatTime = moment(Date.now());
 class SwimReport extends React.Component {
 	constructor(props) {
 		super(props);
-        this.state = {
+    this.state = {
 			da: props.params,
 			loading: false,
 			maxDate: formatTime,
@@ -40,9 +40,9 @@ class SwimReport extends React.Component {
 			headers: {
 				'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
 			}
-        }).then((res)=>{
+		}).then((res)=>{
 			this.setState({swimPool: res.data.data})
-        });
+		});
 	}
 	handleSubmits = (e) => {
 		const year = moment(this.state.date).year()
@@ -55,14 +55,14 @@ class SwimReport extends React.Component {
 		if(date < 10){
 			date = '0' + date
 		}
-        var loginMes = {
-            popleNum: this.props.form.getFieldValue('number'),
-            reqDateTxt: year + '-' + month + '-' + date,
-            swimPoolId: this.state.swimPool.id
+		var loginMes = {
+			popleNum: this.props.form.getFieldValue('number'),
+			reqDateTxt: year + '-' + month + '-' + date,
+			swimPoolId: this.state.swimPool.id
 		}
 		var check = {
 			swimPoolId: this.state.swimPool.id,
-            reqDateTxt: year + '-' + month + '-' + date
+      reqDateTxt: year + '-' + month + '-' + date
 		}
 		request(`${baseURL}/swim/day/req/poples/wx/check?${qs.stringify(check)}`,{
 			method: 'GET',
