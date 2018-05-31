@@ -15,7 +15,7 @@ const Item = List.Item;
 const PoolPage = ({ location, pools, loading }) => {
   const { currentItem } = pools;
   const { waterQualityDetail } = currentItem;
-  const { adminToken } = sessionStorage.getItem('adminToken');
+  let isAdminToken = (sessionStorage.getItem('adminToken') != null);
   /**const iconServices = 
   {
     "001": "https://oiu4ewuqq.qnssl.com/wifi.png",
@@ -85,7 +85,7 @@ const PoolPage = ({ location, pools, loading }) => {
             {currentItem.waterAcreage == null || currentItem.waterAcreage == '' ? null : <div className={styles.address_item_div}>水域面积(㎡)：<span>{currentItem.waterAcreage}</span><Link to={`ponds`}><span style={{ fontSize: '0.23rem', marginLeft: '0.1rem' }}>(查看详情)</span></Link></div>}
             {currentItem.licenseUrl == '' ? null : <div className={styles.address_item_div}>高危许可证：<span><WxImage dataSrc={currentItem.licenseUrl} /></span></div>}
             
-            { adminToken == '' || currentItem.liveVideoUrl == '' ? null : <div className={styles.address_item_div}>实时监控：<span><span  onClick={showLiveVideo.bind(this, currentItem.liveVideoUrl)} style={{ marginLeft: '0.1rem', color: 'blue' }}>查看监控</span></span></div>}
+            { !isAdminToken || currentItem.liveVideoUrl == '' ? null : <div className={styles.address_item_div}>实时监控：<span><span  onClick={showLiveVideo.bind(this, currentItem.liveVideoUrl)} style={{ marginLeft: '0.1rem', color: 'blue' }}>查看监控</span></span></div>}
             
           </div>
         </div>

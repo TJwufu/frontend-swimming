@@ -6,9 +6,10 @@ import {connect} from 'dva';
 import styles from './HomeTabBar.less';
 import TabBarContent from './TabBarContent';
 
-const adminToken = sessionStorage.getItem('adminToken');
+let isAdminToken = (sessionStorage.getItem('adminToken') != null);
+
 const HomeTabBar = ({ dispatch, global, pools, infos, loading, title = '首页', hiddenTabBar = false}) => {
-  return adminToken == '' ? (
+  return !isAdminToken ? (
     <div className={styles.normal}>
       <NavBar
         iconName='false'

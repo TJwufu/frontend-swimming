@@ -8,7 +8,8 @@ export async function query(params) {
 }
 
 export async function fetchPoolList(params) {
-  if(sessionStorage.getItem('adminToken') == ''){
+  let isAdminToken = (sessionStorage.getItem('adminToken') != null);
+  if(!isAdminToken){
 	  return request(`${baseURL}/swim/pools/public?${qs.stringify(params)}`);
   }
   params.t = sessionStorage.getItem('adminToken');
