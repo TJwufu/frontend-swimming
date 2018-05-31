@@ -26,10 +26,10 @@ class HealthCard extends React.Component {
 				'Authorization': 'Bearer c716ccb83c413ffd8229743331810c3d',
 			}
 		}).then((res)=>{
-      // if(res.data.data.id) {
-      //   this.setState({hasCard: true})
-      //   this.setState({cardInfo: res.data.data})
-      // }
+      if(res.data.data.id) {
+        this.setState({hasCard: true})
+        this.setState({cardInfo: res.data.data})
+      }
       console.log(res.data)
 		});
   }
