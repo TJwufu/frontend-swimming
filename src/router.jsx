@@ -19,6 +19,7 @@ import PersonalInfo from './routes/personal/PersonalInfo';
 import HealthCard from './routes/health/HealthCard';
 import HealthApply from './routes/health/HealthApply';
 import Sweep from './routes/health/Sweep';
+import SweepCard from './routes/health/SweepCard';
 import Notice from './routes/health/Notice';
 import Map from './routes/Map';
 import URI from 'urijs';
@@ -27,6 +28,7 @@ import wx from './routes/wx';
 import Ponds from './routes/Ponds';
 import Comment from './routes/Comment';
 import CommentPage from './routes/CommentPage';
+import PoolsVideo from './routes/PoolsVideo';
 
 import Login from './routes/login/Login';
 import DateReport from './routes/report/DateReport';
@@ -67,6 +69,22 @@ export default ({ history,app }) => {
       document.location = generateGetCodeUrl(document.location.href);
     }
   }
+  
+  function beforePoolsQuery(nextState, replace, next) {
+	  window.app._store.dispatch({
+          type: 'pools/query',
+          payload: { pageSize: 9000,
+              swimTypeOne: '',
+              areaRegion: '',
+              orderFlag: '',
+              spNameOrAddress: '',
+              typeIndex: 0,
+              pageNo: 0,
+              hadMore: true,
+              isSwitch: true, }
+      });
+      next();
+  }
 
 
   return (
@@ -79,6 +97,7 @@ export default ({ history,app }) => {
       {/*<Route path="/pools" component={HomeTabBar} />*/}
 
       <Route path="/pools" component={HomeTabBar} />
+      <Route path="/poolVideos" component={PoolsVideo} onEnter={beforePoolsQuery}/>
       
       <Route path="/pools/:poolId" component={PoolPage} />
         <Route path="/discount" component={Preferential} />
@@ -100,6 +119,7 @@ export default ({ history,app }) => {
         <Route path="/healthCard" component={HealthCard} />
         <Route path="/healthApply" component={HealthApply} />
         <Route path="/sweep" component={Sweep} />
+        <Route path="/sweepCard/:id" component={SweepCard} />
         <Route path="/notice" component={Notice} />
         <Route path="/map" component={Map} />
         <Route path="/ponds" component={Ponds} />
