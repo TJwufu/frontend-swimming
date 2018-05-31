@@ -13,15 +13,23 @@ class Sweep extends React.Component {
     hashHistory.push('/healthApply')
   }
   showScanQRCode = () => {
-    window.wx.scanQRCode({
-		needResult: 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
-		scanType: ["qrCode","barCode"], // 可以指定扫二维码还是一维码，默认二者都有
-		success: function (res) {
-		  var result = res.resultStr; // 当needResult 为 1 时，扫码返回的结果
-		  console.info(result);
-          hashHistory.push('/healthCard?'+ result);
-		}
-	});	
+    // 微信扫码
+    wx.scanQRCode({
+      desc: "scanQRCode desc",
+      needResult: 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
+      scanType: ["qrCode", "barCode"], // 可以指定扫二维码还是一维码，默认二者都有
+      success: function(res) {
+        alert(res)
+        // var result = res.resultStr; // 当needResult 为 1 时，扫码返回的结果
+        // hashHistory.push('/healthCard?'+ result);
+      },
+      error: function(res) {
+        if (res.errMsg.indexOf("function_not_exist") > 0) {
+          alert("版本过低请升级");
+        }
+        console.log(res);
+      }
+    });
   }
   render() {
     return (
@@ -36,8 +44,10 @@ class Sweep extends React.Component {
           扫码入场
         </NavBar>
         <div className={styles.dis_flx}>
-          <div>
+          <div className={styles.img}>
             <img src="//oiu4ewuqq.qnssl.com/swimSweep.png" alt="扫码入场" />
+          </div>
+          <div className={styles.butt}>
             <Button type="primary" className={styles.btn} onClick={this.showScanQRCode}>开始扫描</Button>
           </div>
         </div>
