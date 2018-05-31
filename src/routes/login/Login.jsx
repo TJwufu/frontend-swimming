@@ -44,7 +44,12 @@ class Login extends React.Component {
                 return;
             }
             sessionStorage.setItem('token',res.data.data.access_token);
-            hashHistory.push('/dateReport')
+            sessionStorage.setItem('adminToken',res.data.data.access_token);
+            if(this.props.location.query.toPage){
+                hashHistory.push(this.props.location.query.toPage);
+            }else{
+                hashHistory.push('/dateReport');
+            }
         });
     }
     onChange = (e) => {

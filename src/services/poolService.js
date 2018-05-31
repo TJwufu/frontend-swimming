@@ -8,7 +8,11 @@ export async function query(params) {
 }
 
 export async function fetchPoolList(params) {
-  return request(`${baseURL}/swim/pools/public?${qs.stringify(params)}`);
+  if(sessionStorage.getItem('adminToken') == ''){
+	  return request(`${baseURL}/swim/pools/public?${qs.stringify(params)}`);
+  }
+  params.t = sessionStorage.getItem('adminToken');
+  return request(`${baseURL}/swim/pools/public/token?${qs.stringify(params)}`);
 }
 
 export async function fetchPool(id) {

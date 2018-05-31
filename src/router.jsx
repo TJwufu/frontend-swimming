@@ -105,8 +105,9 @@ export default ({ history,app }) => {
         <Route path="/ponds" component={Ponds} />
     	  <Route path="/comment" component={Comment} />
         <Route path="/commentPage" component={CommentPage} />
-        
+
         <Route path="/login" component={Login} />
+        <Route path="/loginBeforeCode" component={Login} onEnter={wechatAuth}/>
         <Route path="/dateReport" component={DateReport} />
         <Route path="/swimList" component={SwimList} />
         <Route path="/swimReport/:date" component={SwimReport} />

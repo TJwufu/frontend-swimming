@@ -140,6 +140,7 @@ export default {
 		const { data } = yield call(fetchTokenByCode, payload.code);
 		payload.userInfo = data.data;
 		window.app._models[1].state.userInfo = data.data;
+		sessionStorage.setItem('adminToken','');
 		//alert(window.app._models[1].state.userInfo);
 		//console.info("fetchTokenByCode:",payload.userInfo);
 		yield put({
@@ -158,10 +159,9 @@ export default {
       // 记录全局变量：检索条件
       window.app._models[1].state.qParam = payload;
       //console.info("window.app._models[1].state.qParam",payload);
-      //alert(payload.longitude +","+ payload.latitude);
       const { data } = yield call(fetchPoolList, parse(payload));
       //console.info(data.data);
-      console.info("updateQueryKey:",payload);
+      //console.info("updateQueryKey:",payload);
       yield put({
         type: 'updateQueryKey',
         payload: { pageNo: 1, ...payload }

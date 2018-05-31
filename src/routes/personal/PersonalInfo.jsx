@@ -9,7 +9,6 @@ const Item = List.Item;
 const Brief = Item.Brief;
 
 const PersonalInfo = ({ pools}) => {
-
   const {userInfo} = pools;
   return (
 	<div className={styles.div_body}>
@@ -27,7 +26,6 @@ const PersonalInfo = ({ pools}) => {
         <Item extra={<div className={styles.div_top}><FilletImage width="100px" height="100px" imageUrl={userInfo.headimgurl == ''?"http://oiu42aq9j.bkt.clouddn.com/my_digital.png": userInfo.headimgurl} /></div>}>头像</Item>
         <Item extra={<div>{userInfo.nickname}</div>}>昵称</Item>
         <Item extra={<div></div>}>手机号</Item>
-        <Item extra={<div>修改</div>}>登录密码</Item>
       </List>
    	</div>
 )};
