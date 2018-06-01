@@ -95,14 +95,14 @@ export default {
               isSwitch: true,
             }
           });
-        }else if(pathToRegexp('/wx').exec(location.pathname)){
+        }else if(pathToRegexp('/wx').exec(location.pathname) || pathToRegexp('/loginToSweep').exec(location.pathname)){
         	//alert("pool wx...:"+window.location.href);
         	//当前全路径
             const location1 = window.location.href;
             //触发  fetchWXJSConf
             dispatch({
               type: 'fetchWXJSConf',
-              payload: {'url':location1},
+              payload: {'url':location1, 'locationPathname':  location.pathname},
             });
         }
       });
@@ -211,6 +211,7 @@ export default {
 
     //获取 微信 jssdk 配置
     * fetchWXJSConf({payload: payload}, {call, put}) {
+      let locationPathname = payload.locationPathname
       const {err, data} = yield call(fetchWXJSConf, payload);
       console.log('data  '+ data);
       if (err) {
@@ -247,8 +248,12 @@ export default {
               window.app._models[1].state.longitude = longitude;
               //缓存经纬度
               //console.info(latitude + ' ' + longitude);
+              let toPathname = '/pools';
+              if(pathToRegexp('/loginToSweep').exec(locationPathname)){
+            	  toPathname = '/login?toPage=sweep';
+              }
               window.app._store.dispatch(routerRedux.push({
-                pathname: '/pools',
+                pathname: toPathname,
                 query: {  },
               }));
             },
