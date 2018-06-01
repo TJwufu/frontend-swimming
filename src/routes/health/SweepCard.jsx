@@ -20,7 +20,6 @@ class SweepCard extends React.Component {
 		this.getCard()
   }
   getCard() {
-    console.log(this.state)
     request(`${baseURL}/swim/fitness/cards/${this.state.id}`,{
       method: 'GET',
 			headers: {
@@ -30,21 +29,27 @@ class SweepCard extends React.Component {
       if(res.data.data.id) {
         this.setState({cardInfo: res.data.data})
       }
-      console.log(res.data)
 		});
   }
   goIn = () => {
-    request(`${baseURL}/swim/fitness/cards/signin/${this.state.id}`,{
+    request(`${baseURL}/swim/fitness/cards/signin/sancode/${this.state.id}`,{
       method: 'GET',
 			headers: {
 				'Authorization': 'Bearer ba4c064980243197a537c2952c6cd253',
 			}
 		}).then((res)=>{
-      if(this.state.cardStatus == '0'){
-        Toast.info('认证入场');
-      }else {
-        Toast.info('确认入场');
-      }
+      Toast.info('确认入场');
+      hashHistory.push('/sweep');
+		});
+  }
+  check = () => {
+    request(`${baseURL}/swim/fitness/cards/authentication/${this.state.id}`,{
+      method: 'GET',
+			headers: {
+				'Authorization': 'Bearer ba4c064980243197a537c2952c6cd253',
+			}
+		}).then((res)=>{
+      Toast.info('认证成功');
       hashHistory.push('/sweep');
 		});
   }
@@ -92,7 +97,8 @@ class SweepCard extends React.Component {
             </div>
           </div>
           <div className={styles.butt}>
-            <Button type="primary" className={styles.btn} onClick={this.goIn}>确认入场</Button>
+            {this.state.cardInfo.cardStatus == '0' ? <Button type="primary" className={styles.btn} onClick={this.check}>认证</Button>: <Button type="primary" className={styles.btn} onClick={this.goIn}>确认入场</Button>}
+            
           </div>
         </div>
         
