@@ -19,8 +19,8 @@ class Sweep extends React.Component {
       scanType: ["qrCode", "barCode"], // 可以指定扫二维码还是一维码，默认二者都有
       success: function(res) {
         alert(JSON.parse(res))
-        if (res.SWFC) {
-          hashHistory.push('/sweepCard/'+ res.SWFC);
+        if (res.split(':')[0] == 'SWFC') {
+          hashHistory.push('/sweepCard/'+ res.split(':')[1]);
         } else {
           Toast.fail('您扫描的二维码有误');
           return;
