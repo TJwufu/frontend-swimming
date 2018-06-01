@@ -71,6 +71,7 @@ export default {
           signature: data.data.signature,
           jsApiList: [
             'getLocation',
+            'scanQRCode'
           ]
         };
 
