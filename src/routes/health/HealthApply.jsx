@@ -14,16 +14,19 @@ class HealthApplyForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      imagesList: [],
+      files: [],
       phoneErr: false,
-      EmergPhoneErr: false,
+      urgentPhoneErr: false,
       phone: '',
-      EmergPhone: '',
-      agree: true
-		};
+      urgentPhone: '',
+      agree: true,
+      photo: '',
+      havePhoto: false,
+      insuranceFlag: 1
+    };
   }
   onErrorClick = () => {
-    if (this.state.phoneErr || this.state.EmergPhoneErr) {
+    if (this.state.phoneErr || this.state.urgentPhoneErr) {
       Toast.fail('请输入11位手机号');
     }
   }
@@ -44,15 +47,15 @@ class HealthApplyForm extends React.Component {
   onChangeEmerg = (value) => {
     if (value.replace(/\s/g, '').length < 11) {
       this.setState({
-        EmergPhoneErr: true,
+        urgentPhoneErr: true,
       });
     } else {
       this.setState({
-        EmergPhoneErr: false,
+        urgentPhoneErr: false,
       });
     }
     this.setState({
-      EmergPhone: value
+      urgentPhone: value
     });
   }
   onChangeAgree = (e) => {
@@ -71,39 +74,81 @@ class HealthApplyForm extends React.Component {
       Toast.info('请同意游泳须知');
       return;
     }
-    let apply = {
-      name: this.props.form.getFieldValue('name'),
-			idcard: this.props.form.getFieldValue('idcard'),
-			phone: this.state.phone,
-			phone: this.state.EmergPhone,
-			photo: '',
+    if(!this.state.havePhoto) {
+      Toast.info('请上传图片');
+      return;
+    }else{
+      if(!this.state.photo) {
+        Toast.info('正在上传图片，请稍后',1);
+        return;
+      }
     }
-    request(`${baseURL}/swim/day/req/poples/wx/new?${qs.stringify(apply)}`,{
+    let apply = '{"name": "'+this.props.form.getFieldValue('name')+'","idcard":"'+this.props.form.getFieldValue('idcard')+'","phone":"'+this.state.phone+',"urgentPhone":"'+ this.state.urgentPhone+'","photo": "'+this.state.photo+'","insuranceFlag":"'+ this.state.insuranceFlag+'"}'
+    request(`${baseURL}/swim/day/req/poples/wx/new`,{
       method: 'POST',
       headers: {
-        'Authorization': 'Bearer c716ccb83c413ffd8229743331810c3d',
-      }
+        'Authorization': 'Bearer ' + window.app._models[1].state.userInfo.token,
+        'Content-Type': 'application/json'
+      },
+      body: apply
     }).then((res)=>{
       if(res.data.success == 'T'){
         Toast.info('申请成功');
       }
     });
   }
+  onInsurance = (e) => {
+    if(e.target.checked){
+      this.setState({
+        insuranceFlag: 1
+      });
+    }else{
+      this.setState({
+        insuranceFlag: 0
+      });
+    }
+  }
+  onImgChange = (files, type, index) => {
+    this.setState({
+      files,
+    });
+    if(type == 'add') {
+      this.setState({
+        havePhoto: true
+      });
+      var formData = '{"bucketName":"cmVsZWFzZS0xeWQ=","imageName":"'+files[0].file.name+'","imageBase64Str":"'+files[0].url+'"}' 
+      request('http://dd.yudingnet.com/v3/dfs/qiniu/upload/base64', {
+        method: 'POST',
+        headers: {
+          'Authorization': 'Bearer ' + window.app._models[1].state.userInfo.token,
+          'Content-Type': 'application/json'
+        },
+        body: formData,
+      }).then((response) => {
+        if (response.data.success) {
+          Toast.success('图片上传成功', 1);
+          this.setState({
+            photo: response.data.data.imageUrl
+          });
+        }
+      }).then((json) => {  
+        
+      })
+    } else {
+      this.setState({
+        photo: ''
+      });
+      this.setState({
+        havePhoto: false
+      });
+      
+    }
+  }
   render() {
     const { getFieldProps } = this.props.form;
-
+    const { files } = this.state;
+    const CheckboxItem = Checkbox.CheckboxItem;
     const AgreeItem = Checkbox.AgreeItem;
-    const listForImage = (imagesList) => {
-      let images = [];
-      for(let i = 0; i < imagesList.length; i++) {
-          let m  = {url : AUTH_URL + 'images/' + imagesList[i].imageName,id : imagesList[i].id};
-          images.push( m )
-      }
-      return images;
-    }
-   
-    const files = listForImage(this.state.imagesList);
-
     return (
       <div className={styles.container}>
         <NavBar
@@ -140,10 +185,10 @@ class HealthApplyForm extends React.Component {
                 placeholder="请输入手机号"
                 type="phone"
                 clear
-                error={this.state.EmergPhoneErr}
+                error={this.state.urgentPhoneErr}
                 onErrorClick={this.onErrorClick}
                 onChange={this.onChangeEmerg}
-                value={this.state.EmergPhone}
+                value={this.state.urgentPhone}
                 labelNumber={6}
               >
                 紧急联系电话
@@ -154,11 +199,23 @@ class HealthApplyForm extends React.Component {
               <div className={styles.title_34}>图片上传</div>
               <ImagePicker
                 files={files}
+                onChange={this.onImgChange}
                 onImageClick={(index, fs) => console.log(index, fs)}
                 multiple={false}
                 selectable={true}
+                selectable={files.length < 1}
               />
               <div className={styles.title_26}>请上传真实照片</div>
+            </List>
+            <List className={styles.bg_fff}>
+              <div className={styles.dis_flex}>
+                <div className={styles.checkbox}>
+                  保险费<span className={styles.c_108ee9}>￥3.5</span>
+                </div>
+                <div>
+                  <AgreeItem data-seed="agree" size='xxs' defaultChecked onChange={e => this.onInsurance(e)}></AgreeItem>
+                </div>
+              </div>
             </List>
             <Flex>
               <Flex.Item>
@@ -169,7 +226,7 @@ class HealthApplyForm extends React.Component {
               </Flex.Item>
             </Flex>
           </form>
-          <div className={styles.pay_btn} onClick={this.handleSubmits}>下一步</div>
+          <Button className={styles.pay_btn} type="primary" onClick={this.handleSubmits}>下一步</Button>
         </section>
       </div>
     )

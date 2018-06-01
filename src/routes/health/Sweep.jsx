@@ -47,7 +47,7 @@ class Sweep extends React.Component {
           扫码入场
         </NavBar>
         <div className={styles.dis_flx}>
-          <div className={styles.img}>
+          <div className={styles.pad_108}>
             <img src="//oiu4ewuqq.qnssl.com/swimSweep.png" alt="扫码入场" />
           </div>
           <div className={styles.butt}>
