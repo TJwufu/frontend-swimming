@@ -83,8 +83,8 @@ class HealthApplyForm extends React.Component {
         return;
       }
     }
-    let apply = '{"name": "'+this.props.form.getFieldValue('name')+'","idcard":"'+this.props.form.getFieldValue('idcard')+'","phone":"'+this.state.phone+',"urgentPhone":"'+ this.state.urgentPhone+'","photo": "'+this.state.photo+'","insuranceFlag":"'+ this.state.insuranceFlag+'"}'
-    request(`${baseURL}/swim/day/req/poples/wx/new`,{
+    let apply = '{"name": "'+this.props.form.getFieldValue('name')+'","idcard":"'+this.props.form.getFieldValue('idcard')+'","phone":"'+this.state.phone+'","urgentPhone":"'+ this.state.urgentPhone+'","photo": "'+this.state.photo+'","insuranceFlag":'+ this.state.insuranceFlag+'}'
+    request(`${baseURL}/swim/fitness/cards/wx`,{
       method: 'POST',
       headers: {
         'Authorization': 'Bearer ' + window.app._models[1].state.userInfo.token,
@@ -116,8 +116,11 @@ class HealthApplyForm extends React.Component {
       this.setState({
         havePhoto: true
       });
-      var formData = '{"bucketName":"cmVsZWFzZS0xeWQ=","imageName":"'+files[0].file.name+'","imageBase64Str":"'+files[0].url+'"}' 
-      request('http://dd.yudingnet.com/v3/dfs/qiniu/upload/base64', {
+      const fdfsURL = FDFS
+      //window.app._models[1].state.userInfo = { "token": "452e770478d037fea2fd4042ad8c864d" }
+      //const formData = '{"bucketName":"cmVsZWFzZS0xeWQ=","imageName":"'+files[0].file.name+'","imageBase64Str":"'+files[0].url+'"}';
+      let formData = `{"bucketName":"cmVsZWFzZS0xeWQ=", "imageName":"${files[0].file.name}", "imageBase64Str":"${files[0].url}" }`;
+      request(`${fdfsURL}/dfs/qiniu/upload/base64`, {
         method: 'POST',
         headers: {
           'Authorization': 'Bearer ' + window.app._models[1].state.userInfo.token,
