@@ -85,7 +85,7 @@ class HealthApplyForm extends React.Component {
     request(`${baseURL}/swim/fitness/cards/wx`,{
       method: 'POST',
       headers: {
-        'Authorization': 'Bearer 62a06606bfc23bf38ca836764a84e086',
+        'Authorization': 'Bearer ' + window.app._models[1].state.userInfo.token,
         'Content-Type': 'application/json'
       },
       body: apply
@@ -116,13 +116,11 @@ class HealthApplyForm extends React.Component {
         havePhoto: true
       });
       const fdfsURL = FDFS
-      //window.app._models[1].state.userInfo = { "token": "452e770478d037fea2fd4042ad8c864d" }
-      //const formData = '{"bucketName":"cmVsZWFzZS0xeWQ=","imageName":"'+files[0].file.name+'","imageBase64Str":"'+files[0].url+'"}';
       let formData = `{"bucketName":"cmVsZWFzZS0xeWQ=", "imageName":"${files[0].file.name}", "imageBase64Str":"${files[0].url}" }`;
       request(`${fdfsURL}/dfs/qiniu/upload/base64`, {
         method: 'POST',
         headers: {
-          'Authorization': 'Bearer 62a06606bfc23bf38ca836764a84e086',
+          'Authorization': 'Bearer ' + window.app._models[1].state.userInfo.token,
           'Content-Type': 'application/json'
         },
         body: formData,
