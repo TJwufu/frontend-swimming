@@ -67,6 +67,7 @@ class HealthApplyForm extends React.Component {
     }
   }
   handleSubmits = () => {
+    
     if (!this.state.agree) {
       Toast.info('请同意游泳须知');
       return;
@@ -84,15 +85,14 @@ class HealthApplyForm extends React.Component {
     request(`${baseURL}/swim/fitness/cards/wx`,{
       method: 'POST',
       headers: {
-        'Authorization': 'Bearer ' + window.app._models[1].state.userInfo.token,
+        'Authorization': 'Bearer 62a06606bfc23bf38ca836764a84e086',
         'Content-Type': 'application/json'
       },
       body: apply
     }).then((res)=>{
       console.log(res)
       if(res.data.success == 'T'){
-        console.log(res)
-        window.open('https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx8dab495537815c1f&redirect_uri='+encodeURIComponent('http://weixin.1yd.me/main.html#/swimPay/wxpaycode?orderNo=' + res.data.data.swimFitnessCardOrder.orderNo) + '&insurance=' + this.state.insuranceFlag, '_blank')
+        window.open('https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx8dab495537815c1f&redirect_uri='+encodeURIComponent('http://weixin.1yd.me/main.html#/swimPay/wxpaycode?orderNo=' + res.data.data.swimFitnessCardOrder.orderNo + '&insurance=' + this.state.insuranceFlag) + '&response_type=code&scope=snsapi_userinfo&#wechat_redirect')
       }
     });
   }
@@ -122,7 +122,7 @@ class HealthApplyForm extends React.Component {
       request(`${fdfsURL}/dfs/qiniu/upload/base64`, {
         method: 'POST',
         headers: {
-          'Authorization': 'Bearer ' + window.app._models[1].state.userInfo.token,
+          'Authorization': 'Bearer 62a06606bfc23bf38ca836764a84e086',
           'Content-Type': 'application/json'
         },
         body: formData,
