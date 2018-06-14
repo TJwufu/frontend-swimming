@@ -23,7 +23,7 @@ class SweepCard extends React.Component {
     request(`${baseURL}/swim/fitness/cards/${this.state.id}`,{
       method: 'GET',
 			headers: {
-				'Authorization': 'Bearer ba4c064980243197a537c2952c6cd253',
+				'Authorization': 'Bearer ' + window.app._models[1].state.userInfo.token,
 			}
 		}).then((res)=>{
       if(res.data.data.id) {
@@ -35,7 +35,7 @@ class SweepCard extends React.Component {
     request(`${baseURL}/swim/fitness/cards/signin/sancode/${this.state.id}`,{
       method: 'GET',
 			headers: {
-				'Authorization': 'Bearer ba4c064980243197a537c2952c6cd253',
+				'Authorization': 'Bearer ' + window.app._models[1].state.userInfo.token,
 			}
 		}).then((res)=>{
       Toast.info('确认入场');
@@ -46,7 +46,7 @@ class SweepCard extends React.Component {
     request(`${baseURL}/swim/fitness/cards/authentication/${this.state.id}`,{
       method: 'GET',
 			headers: {
-				'Authorization': 'Bearer ba4c064980243197a537c2952c6cd253',
+				'Authorization': 'Bearer ' + window.app._models[1].state.userInfo.token,
 			}
 		}).then((res)=>{
       Toast.info('认证成功');
