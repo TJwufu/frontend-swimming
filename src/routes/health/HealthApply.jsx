@@ -85,7 +85,7 @@ class HealthApplyForm extends React.Component {
     request(`${baseURL}/swim/fitness/cards/wx`,{
       method: 'POST',
       headers: {
-        'Authorization': 'Bearer ' + window.app._models[1].state.userInfo.token,
+        'Authorization': 'Bearer ' + sessionStorage.getItem('userInfo').token,
         'Content-Type': 'application/json'
       },
       body: apply
@@ -120,7 +120,7 @@ class HealthApplyForm extends React.Component {
       request(`${fdfsURL}/dfs/qiniu/upload/base64`, {
         method: 'POST',
         headers: {
-          'Authorization': 'Bearer ' + window.app._models[1].state.userInfo.token,
+          'Authorization': 'Bearer ' + sessionStorage.getItem('userInfo').token,
           'Content-Type': 'application/json'
         },
         body: formData,
