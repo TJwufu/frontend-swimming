@@ -63,7 +63,7 @@ class HealthCard extends React.Component {
                             {this.state.cardInfo.cardStatus == '0' ? <div>&nbsp;</div> : <div className={styles.font_24}>认证场馆：{this.state.cardInfo.swimPoolId}</div>}
                           </div>
                           <div className={styles.flx_r}>
-                            <img src={this.state.cardInfo.qrcodeUrl} style="width: 100%;height: auto;"/>
+                            <img className={styles.qrcode_img} src={this.state.cardInfo.qrcodeUrl}/>
                           </div>
                         </div>
                         <div className={styles.dis_row}>
