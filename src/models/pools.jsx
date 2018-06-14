@@ -140,7 +140,8 @@ export default {
 		const { data } = yield call(fetchTokenByCode, payload.code);
 		payload.userInfo = data.data;
 		window.app._models[1].state.userInfo = data.data;
-        sessionStorage.setItem('userInfo', data.data);
+        sessionStorage.setItem('userInfo', JSON.stringify(data.data));
+        sessionStorage.setItem('userToken', data.data.token);
 		sessionStorage.removeItem('adminToken');
 		//alert(window.app._models[1].state.userInfo);
 		//console.info("fetchTokenByCode:",payload.userInfo);
