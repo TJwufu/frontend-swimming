@@ -21,7 +21,7 @@ class HealthCard extends React.Component {
     request(`${baseURL}/swim/fitness/cards/wx/get`,{
 			method: 'GET',
 			headers: {
-				'Authorization': 'Bearer ' + sessionStorage.getItem('userInfo').token,
+				'Authorization': 'Bearer ' + sessionStorage.getItem('userToken'),
 			}
 		}).then((res)=>{
       if(res.data.data.id) {
