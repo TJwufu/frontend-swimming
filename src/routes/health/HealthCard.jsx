@@ -1,8 +1,6 @@
-import React, { PropTypes } from 'react';
-import { Table, List, InputItem, Switch, Flex, Stepper, Slider, Button, NavBar } from 'antd-mobile';
+import React from 'react';
+import { Button, NavBar } from 'antd-mobile';
 import { hashHistory } from 'dva/router';
-import { connect } from 'dva';
-import FilletImage from '../../components/Common/FilletImage';
 import styles from './HealthCard.less';
 import request from '../../utils/request';
 
@@ -65,7 +63,7 @@ class HealthCard extends React.Component {
                             {this.state.cardInfo.cardStatus == '0' ? <div>&nbsp;</div> : <div className={styles.font_24}>认证场馆：{this.state.cardInfo.swimPoolId}</div>}
                           </div>
                           <div className={styles.flx_r}>
-                            <img src={this.state.cardInfo.qrcodeUrl} />
+                            <img src={this.state.cardInfo.qrcodeUrl} style="width: 100%;height: auto;"/>
                           </div>
                         </div>
                         <div className={styles.dis_row}>

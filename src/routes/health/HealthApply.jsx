@@ -1,12 +1,9 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import { createForm } from 'rc-form';
-import { Table, List, InputItem, Toast, Switch, Flex, Stepper, Slider, Button, NavBar, ImagePicker, Checkbox } from 'antd-mobile';
+import { List, InputItem, Toast, Flex, Button, NavBar, ImagePicker, Checkbox } from 'antd-mobile';
 import { hashHistory } from 'dva/router';
-import { connect } from 'dva';
-import FilletImage from '../../components/Common/FilletImage';
 import styles from './HealthApply.less';
 import request from '../../utils/request';
-import qs from 'qs';
 
 const baseURL = HOST
 
@@ -93,7 +90,7 @@ class HealthApplyForm extends React.Component {
       body: apply
     }).then((res)=>{
       if(res.data.success == 'T'){
-        Toast.info('申请成功');
+        window.open('https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx8dab495537815c1f&redirect_uri='+encodeURIComponent('http://weixin.1yd.me/main.html#/swimPay/wxpaycode?orderNo='+res.data.swimFitnessCardOrder.orderNo)+'&insurance=' + this.state.insuranceFlag)
       }
     });
   }
@@ -150,7 +147,6 @@ class HealthApplyForm extends React.Component {
   render() {
     const { getFieldProps } = this.props.form;
     const { files } = this.state;
-    const CheckboxItem = Checkbox.CheckboxItem;
     const AgreeItem = Checkbox.AgreeItem;
     return (
       <div className={styles.container}>
