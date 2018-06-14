@@ -82,7 +82,7 @@ class SweepCard extends React.Component {
                 {this.state.cardInfo.cardStatus == '0' ? <div>&nbsp;</div> : <div className={styles.line_2}>认证场馆：{this.state.cardInfo.swimPoolId}</div>}
               </div>
               <div className={styles.flx_r}>
-                <img src={this.state.cardInfo.qrcodeUrl} />
+                <img className={styles.qrcode_img} src={this.state.cardInfo.qrcodeUrl} />
               </div>
             </div>
             <div className={styles.dis_row}>
