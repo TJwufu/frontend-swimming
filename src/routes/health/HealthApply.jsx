@@ -6,7 +6,7 @@ import styles from './HealthApply.less';
 import request from '../../utils/request';
 
 const baseURL = HOST
-
+console.log(window)
 class HealthApplyForm extends React.Component {
   constructor(props) {
     super(props);
@@ -89,8 +89,10 @@ class HealthApplyForm extends React.Component {
       },
       body: apply
     }).then((res)=>{
+      console.log(res)
       if(res.data.success == 'T'){
-        window.open('https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx8dab495537815c1f&redirect_uri='+encodeURIComponent('http://weixin.1yd.me/main.html#/swimPay/wxpaycode?orderNo='+res.data.swimFitnessCardOrder.orderNo)+'&insurance=' + this.state.insuranceFlag)
+        console.log(res)
+        window.open('https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx8dab495537815c1f&redirect_uri='+encodeURIComponent('http://weixin.1yd.me/main.html#/swimPay/wxpaycode?orderNo=' + res.data.swimFitnessCardOrder.orderNo) + '&insurance=' + this.state.insuranceFlag)
       }
     });
   }
