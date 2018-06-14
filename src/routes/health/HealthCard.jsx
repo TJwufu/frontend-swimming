@@ -47,7 +47,7 @@ class HealthCard extends React.Component {
     } else {
       contHtml = <div>
                     <div className={styles.bg_108ee9}>
-                      <img src="//oiu4ewuqq.qnssl.com/norecord.png" alt="暂无健康卡" />
+                      <img src={this.state.cardInfo.photo} alt="暂无健康卡" />
                     </div>
                     <div className={styles.pad_3}>
                       <div className={styles.card}>

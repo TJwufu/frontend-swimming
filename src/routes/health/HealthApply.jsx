@@ -6,7 +6,6 @@ import styles from './HealthApply.less';
 import request from '../../utils/request';
 
 const baseURL = HOST
-console.log(window)
 class HealthApplyForm extends React.Component {
   constructor(props) {
     super(props);
