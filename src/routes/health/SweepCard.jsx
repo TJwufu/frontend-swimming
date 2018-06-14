@@ -33,7 +33,7 @@ class SweepCard extends React.Component {
   }
   goIn = () => {
     request(`${baseURL}/swim/fitness/cards/signin/sancode/${this.state.id}`,{
-      method: 'GET',
+      method: 'POST',
 			headers: {
 				'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
 			}
@@ -44,7 +44,7 @@ class SweepCard extends React.Component {
   }
   check = () => {
     request(`${baseURL}/swim/fitness/cards/authentication/${this.state.id}`,{
-      method: 'GET',
+      method: 'POST',
 			headers: {
 				'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
 			}
