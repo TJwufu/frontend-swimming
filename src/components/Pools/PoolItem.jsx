@@ -4,8 +4,6 @@ import { hashHistory } from 'dva/router';
 import StarIcons from '../Common/StarIcons';
 import styles from './PoolItem.less';
 
-let isAdminToken = (sessionStorage.getItem('adminToken') != null);
-
 // 跳转视频直播页面
 function showLiveVideo(_liveVideoUrl){
   if(_liveVideoUrl == null || _liveVideoUrl == ''){
@@ -15,16 +13,18 @@ function showLiveVideo(_liveVideoUrl){
 }
 
 //跳转游泳场所详情页面
-function toLinkPage(_id){
-	if(isAdminToken){
+function toLinkPage(_id, _isAdminToken){
+	if(_isAdminToken){
 		return;
 	}
 	hashHistory.push('/pools/'+_id)
 }
 
-const PoolItem = ({ rowData, sectionId, rowId }) => (
+const PoolItem = ({ rowData, sectionId, rowId }) =>{ 
+  let isAdminToken = (sessionStorage.getItem('adminToken') != null);
+  return (
   <div className={styles.item} key={rowId}>
-    <Link onClick={ toLinkPage.bind(this, rowData.id) }>
+    <Link onClick={ toLinkPage.bind(this, rowData.id, isAdminToken) }>
       <div className={styles.image}>
         <img style={{ height: '1.2rem', width: '100%' }} src={rowData.spAvatar !== '' ? rowData.spAvatar : 'http://img.release.1yd.me/Fnq3JmmOan-yAHtJHk-n9-o3Qqbr'} alt={rowData.spAvatar} />
       </div>
@@ -68,7 +68,8 @@ const PoolItem = ({ rowData, sectionId, rowId }) => (
       </div>
     </Link>
   </div >
-);
+ );
+};
 
 PoolItem.propTypes = {
   rowData: PropTypes.object.isRequired,

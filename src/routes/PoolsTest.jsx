@@ -8,12 +8,12 @@ import DownMenu from '../components/Pools/DownMenu';
 const Pools = ({ dispatch, pools, loading }) => {
   const { dataSource, pageNo, pageSize, swimTypeOne, orderFlag, areaRegion, spNameOrAddress, hadMore, typeIndex } = pools;
   const onEndReached = (event) => {
-    if (!loading && hadMore) {
-      dispatch({
-        type: 'pools/query',
-        payload: { pageNo: pageNo + 1, pageSize, swimTypeOne }
-      });
-    }
+//    if (!loading && hadMore) {
+//      dispatch({
+//        type: 'pools/query',
+//        payload: { pageNo: pageNo + 1,hadMore: true,isSwitch: true, pageSize, swimTypeOne }
+//      });
+//    }
   };
 
   function showToast(flag, event) {

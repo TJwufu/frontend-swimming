@@ -63,7 +63,7 @@ export default {
     	subscribe_time: '',
     	unionid: '',
     },
-    orderFlag: '',	// 排序标识
+    orderFlag: '1',	// 排序标识
     sereviceTypeStr: '', //提供服务类型
     spNameOrAddress: '',
     spNameOrAddressB: '',
@@ -140,6 +140,7 @@ export default {
 		const { data } = yield call(fetchTokenByCode, payload.code);
 		payload.userInfo = data.data;
 		window.app._models[1].state.userInfo = data.data;
+        sessionStorage.setItem('userInfo', data.data);
 		sessionStorage.removeItem('adminToken');
 		//alert(window.app._models[1].state.userInfo);
 		//console.info("fetchTokenByCode:",payload.userInfo);
