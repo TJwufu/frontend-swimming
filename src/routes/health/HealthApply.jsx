@@ -91,7 +91,7 @@ class HealthApplyForm extends React.Component {
     }).then((res)=>{
       console.log(res)
       if(res.data.success == 'T'){
-        document.location = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx8dab495537815c1f&redirect_uri='+encodeURIComponent('http://weixin.1yd.me/main.html#/swimPay/wxpaycode?orderNo=' + res.data.data.swimFitnessCardOrder.orderNo + '&insurance=' + this.state.insuranceFlag) + '&response_type=code&scope=snsapi_userinfo&#wechat_redirect'
+        document.location = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx8dab495537815c1f&redirect_uri='+encodeURIComponent('https://weixin.1yd.me/main.html#/swimPay/wxpaycode?orderNo=' + res.data.data.swimFitnessCardOrder.orderNo + '&insurance=' + this.state.insuranceFlag) + '&response_type=code&scope=snsapi_userinfo&#wechat_redirect'
       }
     });
   }
