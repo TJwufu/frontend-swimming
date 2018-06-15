@@ -68,10 +68,16 @@ class Login extends React.Component {
             var name = localStorage.getItem('swimUserName')
             var password = localStorage.getItem('swimUserPass')
         }
+
+        var headImageUrl = 'http://img.release.1yd.me/shyy.png';
+        if(this.props.location.query.toPage){
+        	headImageUrl = 'http://img.release.1yd.me/FuPgET_cMHNYUIzBY0q1-lWzQvDZ'
+        }
+        
         return (
             <div className={styles.content}>
                 <div className={styles.logo}>
-                    <img src="http://img.release.1yd.me/shyy.png" alt="" className={styles.headImg} />
+                    <img src={headImageUrl} alt="" className={styles.headImg} />
                 </div>
                 <ul className={styles.ul}>
                     <li>
