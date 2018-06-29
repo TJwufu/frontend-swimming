@@ -25,16 +25,18 @@ class SwimReport extends React.Component {
 			loading: false,
 			maxDate: formatTime,
 			date: moment(parseInt(props.params.date)),
-			swimPool: {},
+			swimPool: this.props.reports.reqSwimPool,
 			modal: false,
 			isLoading: true
 		};
 	}
-	
 	componentWillMount(){
 		this.handleSubmit();
 	}
 	handleSubmit = (e) => {
+		if(this.state.swimPool != null){
+			return;
+		}
 		request(`${baseURL}/swim/userRelations/get`,{
 			method: 'GET',
 			headers: {
@@ -56,9 +58,11 @@ class SwimReport extends React.Component {
 			date = '0' + date
 		}
 		var loginMes = {
-			popleNum: this.props.form.getFieldValue('number'),
 			reqDateTxt: year + '-' + month + '-' + date,
-			swimPoolId: this.state.swimPool.id
+			swimPoolId: this.state.swimPool.id,
+			swimmingNum: this.props.form.getFieldValue('swimmingNum'),
+			trainingNum: this.props.form.getFieldValue('trainingNum'),
+			completeNum: this.props.form.getFieldValue('completeNum')
 		}
 		var check = {
 			swimPoolId: this.state.swimPool.id,
@@ -80,6 +84,8 @@ class SwimReport extends React.Component {
 					if(res.data.success == 'T'){
 						Toast.success('上报成功!', 1);
 						hashHistory.push('/swimList');
+					}else if(res.data.success == 'F'){
+						Toast.fail('提交失败：'+ res.data.message, 3);
 					}
 				});
 			}else{
@@ -95,6 +101,8 @@ class SwimReport extends React.Component {
 							if(res.data.success == 'T'){
 								Toast.success('上报成功!', 1);
 								hashHistory.push('/swimList');
+							}else if(res.data.success == 'F'){
+								Toast.fail('提交失败：'+ res.data.message, 3);
 							}
 						});
 					}},
@@ -117,10 +125,10 @@ class SwimReport extends React.Component {
 							hashHistory.goBack();
 						}}
 				>
-					人次上报
+					人数上报
 				</NavBar>
 				<div className={styles.title} onClick={this.handleSubmit}>
-					{this.state.swimPool.spName}
+					{ this.state.swimPool!=null? this.state.swimPool.spName : ''}
 				</div>
 				<section className={styles.content}>
 					<form>
@@ -134,8 +142,14 @@ class SwimReport extends React.Component {
 							<List.Item arrow="horizontal">上报时间</List.Item>
 						</DatePicker>
 						<List>
-							<InputItem placeholder="请输入游客人次" type="number" {...getFieldProps('number')}>
-								游客人次
+							<InputItem placeholder="请输入游泳人数" type="number" labelNumber={6} clear onChange={this.onChangeSwimmingNum} {...getFieldProps('swimmingNum')} >
+								游泳人数
+							</InputItem>
+							<InputItem placeholder="请输入培训人数" type="number" labelNumber={6} clear  {...getFieldProps('trainingNum')}>
+								培训人数
+							</InputItem>
+							<InputItem placeholder="请输入学会游泳人数" type="number" labelNumber={6} clear onChange={this.onChangeCompleteNum} {...getFieldProps('completeNum')}>
+								学会游泳人数
 							</InputItem>
 						</List>
 					</form>
@@ -148,4 +162,10 @@ class SwimReport extends React.Component {
 	}
 }
 const SwimReports = createForm()(SwimReport)
-export default SwimReports;
+//export default SwimReports;
+
+SwimReports.propTypes = {
+  type: React.PropTypes.object,
+};
+const mapStateToProps = ({reports}) => ({reports});
+export default connect(mapStateToProps)(SwimReports);

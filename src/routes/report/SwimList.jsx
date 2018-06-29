@@ -25,7 +25,10 @@ class SwimList extends React.Component {
 			list: [],
 			dataSource: [],
 			date: formatTime,
-			swimPool: {}
+			swimPool: this.props.reports.reqSwimPool,
+			swimmingIcon: 'http://img.release.1yd.me/swimmingIcon.png',
+			trainingIcon: 'http://img.release.1yd.me/trainingIcon.png',
+			completeIcon: 'http://img.release.1yd.me/completeIcon.png'
 		};
 	}
 	componentWillMount(){
@@ -33,6 +36,10 @@ class SwimList extends React.Component {
 		this.genData();
 	}
 	handleSubmit = (e) => {
+		if(this.state.swimPool != null){
+			return;
+		}
+		
 		request(`${baseURL}/swim/userRelations/get`,{
 			method: 'GET',
 			headers: {
@@ -87,7 +94,7 @@ class SwimList extends React.Component {
 					上报记录
 				</NavBar>
 				<div className={styles.title} onClick={this.handleSubmit}>
-					{this.state.swimPool.spName}
+					{ this.state.swimPool!=null? this.state.swimPool.spName : ''}
 				</div>
 			<section className={styles.content}>
 				<List 
@@ -101,13 +108,24 @@ class SwimList extends React.Component {
 				>
 				{
 					this.state.list.map((ele, index) => (
+					  <div key={ index }>
 						<Link to={`swimReport/${ele.reqDate}`} key={index}>
-						<Item
+						  <Item
 							key={index}
-							arrow={ele.popleNum == '0' ? '' : 'horizontal'}
-							extra={ele.popleNum == '0' ? <span style={{color:'rgb(16, 142, 233)'}}>人次补报</span> : ele.popleNum}
-						>{ele.reqDateTxt}</Item>
-					</Link>
+							arrow={ele.id == null ? '' : ''}
+							extra={ele.id == null ? <span style={{color:'rgb(16, 142, 233)'}}> 人数补报</span>: <span style={{color:'rgb(16, 142, 233)'}}> 重新上报</span>  }
+						  >{ele.reqDateTxt}</Item>
+						</Link>
+						{ele.id == null ? 
+						(<div className={styles.div_no_detail}>暂无上报</div>)
+						:
+						(<div className={styles.div_detail}>
+							<div className={styles.div_detail_inner}><img src={this.state.swimmingIcon} /> 游泳人数：{ele.swimmingNum}人</div>
+							<div className={styles.div_detail_inner}><img src={this.state.trainingIcon} /> 培训人数：{ele.trainingNum}人</div>
+							<div className={styles.div_detail_inner} style={{width: '37%'}}><img src={this.state.completeIcon} /> 学会游泳人数：{ele.completeNum}人</div>
+						</div>)
+						}
+					  </div>
 					))
 				}
 				</List>
@@ -115,4 +133,9 @@ class SwimList extends React.Component {
 		</div>);
 	}
 }
-export default SwimList;
+
+SwimList.propTypes = {
+  type: React.PropTypes.object,
+};
+const mapStateToProps = ({reports}) => ({reports});
+export default connect(mapStateToProps)(SwimList);

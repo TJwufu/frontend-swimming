@@ -72,6 +72,13 @@ export default {
     	qAreaRegion:'',
     	qOrderFlag:'',
     },
+    reqDataParam:{
+    	token: '',		// token
+    	roleLevel: '',   // 角色级别
+    	nickName: '',	// 登录用户昵称
+    	reqSwimPool: null,	 // 游泳场所对象
+    },
+
   },
 
   subscriptions: {
@@ -142,6 +149,7 @@ export default {
 		window.app._models[1].state.userInfo = data.data;
         sessionStorage.setItem('userInfo', JSON.stringify(data.data));
         sessionStorage.setItem('userToken', data.data.token);
+        sessionStorage.setItem('reloadFlag', "0");
 		sessionStorage.removeItem('adminToken');
 		//alert(window.app._models[1].state.userInfo);
 		//console.info("fetchTokenByCode:",payload.userInfo);

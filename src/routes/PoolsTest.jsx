@@ -7,6 +7,13 @@ import DownMenu from '../components/Pools/DownMenu';
 
 const Pools = ({ dispatch, pools, loading }) => {
   const { dataSource, pageNo, pageSize, swimTypeOne, orderFlag, areaRegion, spNameOrAddress, hadMore, typeIndex } = pools;
+  // 临时方案：进入页面后强制刷新一次，解决全面屏页面加载的问题
+  if (sessionStorage.getItem('reloadFlag') != '1') {
+  	console.info('reload reloadFlag:',sessionStorage.getItem('reloadFlag'));
+	sessionStorage.setItem('reloadFlag', "1");
+  	window.location.reload();
+  }
+  
   const onEndReached = (event) => {
 //    if (!loading && hadMore) {
 //      dispatch({

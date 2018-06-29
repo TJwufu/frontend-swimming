@@ -31,6 +31,7 @@ import CommentPage from './routes/CommentPage';
 import PoolsVideo from './routes/PoolsVideo';
 
 import Login from './routes/login/Login';
+import DataTotal from './routes/report/DataTotal';
 import DateReport from './routes/report/DateReport';
 import SwimList from './routes/report/SwimList';
 import SwimReport from './routes/report/SwimReport';
@@ -128,7 +129,8 @@ export default ({ history,app }) => {
 
         <Route path="/login" component={Login} />
         <Route path="/loginToSweep" component={wx} onEnter={wechatAuth}/>
-        <Route path="/dateReport" component={DateReport} />
+      	<Route path="/dataTotal" component={DataTotal} />
+      	<Route path="/dateReport" component={DateReport} />
         <Route path="/swimList" component={SwimList} />
         <Route path="/swimReport/:date" component={SwimReport} />
         <Route path="/trainReport" component={TrainReport} />
