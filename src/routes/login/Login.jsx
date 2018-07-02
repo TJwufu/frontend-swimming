@@ -43,6 +43,7 @@ class Login extends React.Component {
                 Toast.info('用户名密码错误');
                 return;
             }
+            sessionStorage.setItem('reloadFlag', '0');
             sessionStorage.setItem('token',res.data.data.access_token);
             sessionStorage.setItem('adminToken',res.data.data.access_token);
             if(this.props.location.query.toPage){

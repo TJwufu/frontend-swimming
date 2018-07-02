@@ -12,6 +12,12 @@ const Brief = Item.Brief;
 const baseURL = HOST
 
 const DateReport = ({ reports}) => {
+	// 临时方案：进入页面后强制刷新一次，解决全面屏页面加载的问题
+    if (sessionStorage.getItem('reloadFlag') != '1') {
+  	  console.info('reload reloadFlag:',sessionStorage.getItem('reloadFlag'));
+	  sessionStorage.setItem('reloadFlag', "1");
+  	  window.location.reload();
+    }
 	return (
 		<div style={{height: 'auto', paddingTop: '0.9rem'}}>
 			<NavBar
@@ -35,7 +41,7 @@ const DateReport = ({ reports}) => {
 				</Link>
 			</List>) : null 
 			}
-			{ (reports.roleLevel == 'XXX') ? 
+			{ (reports.roleLevel == '01') ? 
 			(<List className={styles.list}>
 				<Link to={'dataTotal'}>
 					<Item
