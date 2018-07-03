@@ -41,7 +41,7 @@ const DateReport = ({ reports}) => {
 				</Link>
 			</List>) : null 
 			}
-			{ (reports.roleLevel == '01') ? 
+			{ (reports.roleLevel == '01' || reports.roleLevel == '02' || reports.roleLevel == '03') ? 
 			(<List className={styles.list}>
 				<Link to={'dataTotal'}>
 					<Item
