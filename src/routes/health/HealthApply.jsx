@@ -211,7 +211,7 @@ class HealthApplyForm extends React.Component {
                   保险费<span className={styles.c_108ee9}>￥3.5</span>
                 </div>
                 <div>
-                  <AgreeItem data-seed="agree" size='xxs' defaultChecked onChange={e => this.onInsurance(e)}></AgreeItem>
+                  <AgreeItem data-seed="agree" size='xxs' defaultChecked disabled onChange={e => this.onInsurance(e)}></AgreeItem>
                 </div>
               </div>
             </List>

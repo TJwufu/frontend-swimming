@@ -27,7 +27,8 @@ class SwimReport extends React.Component {
 			date: moment(parseInt(props.params.date)),
 			swimPool: this.props.reports.reqSwimPool,
 			modal: false,
-			isLoading: true
+			isLoading: true,
+			submitDisabled: false
 		};
 	}
 	componentWillMount(){
@@ -47,6 +48,7 @@ class SwimReport extends React.Component {
 		});
 	}
 	handleSubmits = (e) => {
+		this.setState({submitDisabled: true})
 		const year = moment(this.state.date).year()
 		var month = moment(this.state.date).month()+1
 		var date = moment(this.state.date).date()
@@ -109,7 +111,8 @@ class SwimReport extends React.Component {
 				])
 				
 			}
-			
+
+			this.setState({submitDisabled: false})
         });
 	}
 	
@@ -156,7 +159,7 @@ class SwimReport extends React.Component {
 				</section>
 
 				<div className={styles.login}>
-					<button onClick={this.handleSubmits}>提交</button>
+					<button onClick={this.handleSubmits} disabled={this.state.submitDisabled}>提交</button>
 				</div>
 			</div>);
 	}

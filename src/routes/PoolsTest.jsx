@@ -4,6 +4,7 @@ import React, { PropTypes } from 'react';
 import PoolList from '../components/Pools/PoolList';
 import styles from './Pools.less';
 import DownMenu from '../components/Pools/DownMenu';
+import { hashHistory } from 'dva/router';
 
 const Pools = ({ dispatch, pools, loading }) => {
   const { dataSource, pageNo, pageSize, swimTypeOne, orderFlag, areaRegion, spNameOrAddress, hadMore, typeIndex } = pools;
@@ -11,7 +12,8 @@ const Pools = ({ dispatch, pools, loading }) => {
   if (sessionStorage.getItem('reloadFlag') != '1') {
   	console.info('reload reloadFlag:',sessionStorage.getItem('reloadFlag'));
 	sessionStorage.setItem('reloadFlag', "1");
-  	window.location.reload();
+  	//window.location.reload();
+	hashHistory.push('/pools');
   }
   
   const onEndReached = (event) => {

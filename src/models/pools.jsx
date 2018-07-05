@@ -160,8 +160,10 @@ export default {
 	},
     * query({ payload }, { call, put }) {
       payload.disabled = '0';
-      payload.longitude = window.app._models[1].state.longitude;
-      payload.latitude = window.app._models[1].state.latitude;
+//      payload.longitude = window.app._models[1].state.longitude;
+//      payload.latitude = window.app._models[1].state.latitude;
+      payload.longitude = sessionStorage.getItem('longitude');
+      payload.latitude = sessionStorage.getItem('latitude');
       if(payload.longitude == '' || payload.latitude == ''){
 	      payload.longitude = "121.5137";
 	      payload.latitude = "31.30293";  
@@ -256,6 +258,8 @@ export default {
               // set state
               window.app._models[1].state.latitude = latitude;
               window.app._models[1].state.longitude = longitude;
+              sessionStorage.setItem('latitude', latitude);
+              sessionStorage.setItem('longitude', longitude);
               //缓存经纬度
               //console.info(latitude + ' ' + longitude);
               let toPathname = '/pools';
