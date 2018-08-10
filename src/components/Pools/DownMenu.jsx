@@ -67,25 +67,35 @@ class PopupContent extends React.Component {
 		);
 	}else if(this.props.pVal == 'Area'){
 		return (
-			  <List className={styles.popupList}>
-		        <List.Item thumb="" extra={this.props.pools.areaRegion == "" || this.props.pools.areaRegion == null?"✅":""}  onClick={() => { this.onSel('area',''); }}>全部区域</List.Item>
-		        <List.Item thumb="" extra={this.props.pools.areaRegion == "浦东新区"?"✅":""} onClick={() => { this.onSel('area','浦东新区'); }}>浦东新区</List.Item>
-		        <List.Item thumb="" extra={this.props.pools.areaRegion == "黄浦区"?"✅":""} onClick={() => { this.onSel('area','黄浦区'); }}>黄浦区</List.Item>
-		        <List.Item thumb="" extra={this.props.pools.areaRegion == "徐汇区"?"✅":""} onClick={() => { this.onSel('area','徐汇区'); }}>徐汇区</List.Item>
-		        <List.Item thumb="" extra={this.props.pools.areaRegion == "长宁区"?"✅":""} onClick={() => { this.onSel('area','长宁区'); }}>长宁区</List.Item>
-		        <List.Item thumb="" extra={this.props.pools.areaRegion == "静安区"?"✅":""} onClick={() => { this.onSel('area','静安区'); }}>静安区</List.Item>
-		        <List.Item thumb="" extra={this.props.pools.areaRegion == "普陀区"?"✅":""} onClick={() => { this.onSel('area','普陀区'); }}>普陀区</List.Item>
-		        <List.Item thumb="" extra={this.props.pools.areaRegion == "虹口区"?"✅":""} onClick={() => { this.onSel('area','虹口区'); }}>虹口区</List.Item>
-		        <List.Item thumb="" extra={this.props.pools.areaRegion == "杨浦区"?"✅":""} onClick={() => { this.onSel('area','杨浦区'); }}>杨浦区</List.Item>
-		        <List.Item thumb="" extra={this.props.pools.areaRegion == "闵行区"?"✅":""} onClick={() => { this.onSel('area','闵行区'); }}>闵行区</List.Item>
-		        <List.Item thumb="" extra={this.props.pools.areaRegion == "宝山区"?"✅":""} onClick={() => { this.onSel('area','宝山区'); }}>宝山区</List.Item>
-		        <List.Item thumb="" extra={this.props.pools.areaRegion == "嘉定区"?"✅":""} onClick={() => { this.onSel('area','嘉定区'); }}>嘉定区</List.Item>
-		        <List.Item thumb="" extra={this.props.pools.areaRegion == "金山区"?"✅":""} onClick={() => { this.onSel('area','金山区'); }}>金山区</List.Item>
-		        <List.Item thumb="" extra={this.props.pools.areaRegion == "松江区"?"✅":""} onClick={() => { this.onSel('area','松江区'); }}>松江区</List.Item>
-		        <List.Item thumb="" extra={this.props.pools.areaRegion == "青浦区"?"✅":""} onClick={() => { this.onSel('area','青浦区'); }}>青浦区</List.Item>
-		        <List.Item thumb="" extra={this.props.pools.areaRegion == "奉贤区"?"✅":""} onClick={() => { this.onSel('area','奉贤区'); }}>奉贤区</List.Item>
-		        <List.Item thumb="" extra={this.props.pools.areaRegion == "崇明区"?"✅":""} onClick={() => { this.onSel('area','崇明区'); }}>崇明区</List.Item>
-		      </List>
+			<ul className={styles.popupUl}>
+	        	<li style={{ marginTop: '0.18rem' }}>
+	        	  <Button inline className={styles.butClass + " " + (this.props.pools.areaRegion == "全部区域"?styles.butCheckClass:"")} onClick={() => this.onSel('area','') } >全部区域	</Button>
+	            </li>
+		        <li style={{ marginTop: '0.18rem' }}>
+	        	  <Button inline className={styles.butClass + " " + (this.props.pools.areaRegion == "崇明区"?styles.butCheckClass:"")} onClick={() => this.onSel('area','崇明区') } >崇明区	</Button>
+	        	  <Button inline className={styles.butClass + " " + (this.props.pools.areaRegion == "黄浦区"?styles.butCheckClass:"")} onClick={() => this.onSel('area','黄浦区') } >黄浦区	</Button>
+	        	  <Button inline className={styles.butClass + " " + (this.props.pools.areaRegion == "徐汇区"?styles.butCheckClass:"")} onClick={() => this.onSel('area','徐汇区') } >徐汇区	</Button>
+	        	  <Button inline className={styles.butClass + " " + (this.props.pools.areaRegion == "浦东新区"?styles.butCheckClass:"")} onClick={() => this.onSel('area','浦东新区') } >浦东新区	</Button>
+		        </li>
+		        <li style={{ marginTop: '0.18rem' }}>
+	        	  <Button inline className={styles.butClass + " " + (this.props.pools.areaRegion == "长宁区"?styles.butCheckClass:"")} onClick={() => this.onSel('area','长宁区') } >长宁区	</Button>
+	        	  <Button inline className={styles.butClass + " " + (this.props.pools.areaRegion == "静安区"?styles.butCheckClass:"")} onClick={() => this.onSel('area','静安区') } >静安区	</Button>
+	        	  <Button inline className={styles.butClass + " " + (this.props.pools.areaRegion == "普陀区"?styles.butCheckClass:"")} onClick={() => this.onSel('area','普陀区') } >普陀区	</Button>
+	        	  <Button inline className={styles.butClass + " " + (this.props.pools.areaRegion == "虹口区"?styles.butCheckClass:"")} onClick={() => this.onSel('area','虹口区') } >虹口区	</Button>
+		        </li>
+		        <li style={{ marginTop: '0.18rem' }}>
+	        	  <Button inline className={styles.butClass + " " + (this.props.pools.areaRegion == "杨浦区"?styles.butCheckClass:"")} onClick={() => this.onSel('area','杨浦区') } >杨浦区	</Button>
+	        	  <Button inline className={styles.butClass + " " + (this.props.pools.areaRegion == "闵行区"?styles.butCheckClass:"")} onClick={() => this.onSel('area','闵行区') } >闵行区	</Button>
+	        	  <Button inline className={styles.butClass + " " + (this.props.pools.areaRegion == "宝山区"?styles.butCheckClass:"")} onClick={() => this.onSel('area','宝山区') } >宝山区	</Button>
+	        	  <Button inline className={styles.butClass + " " + (this.props.pools.areaRegion == "嘉定区"?styles.butCheckClass:"")} onClick={() => this.onSel('area','嘉定区') } >嘉定区	</Button>
+		        </li>
+		        <li style={{ marginTop: '0.18rem' }}>
+	        	  <Button inline className={styles.butClass + " " + (this.props.pools.areaRegion == "金山区"?styles.butCheckClass:"")} onClick={() => this.onSel('area','金山区') } >金山区	</Button>
+	        	  <Button inline className={styles.butClass + " " + (this.props.pools.areaRegion == "松江区"?styles.butCheckClass:"")} onClick={() => this.onSel('area','松江区') } >松江区	</Button>
+	        	  <Button inline className={styles.butClass + " " + (this.props.pools.areaRegion == "青浦区"?styles.butCheckClass:"")} onClick={() => this.onSel('area','青浦区') } >青浦区	</Button>
+	        	  <Button inline className={styles.butClass + " " + (this.props.pools.areaRegion == "奉贤区"?styles.butCheckClass:"")} onClick={() => this.onSel('area','奉贤区') } >奉贤区	</Button>
+		        </li>
+		      </ul>
 		);
 	}else if(this.props.pVal == 'Query'){
 		return (
