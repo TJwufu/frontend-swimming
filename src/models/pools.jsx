@@ -147,10 +147,12 @@ export default {
 		const { data } = yield call(fetchTokenByCode, payload.code);
 		payload.userInfo = data.data;
 		window.app._models[1].state.userInfo = data.data;
-        sessionStorage.setItem('userInfo', JSON.stringify(data.data));
-        sessionStorage.setItem('userToken', data.data.token);
-        sessionStorage.setItem('reloadFlag', "0");
-		sessionStorage.removeItem('adminToken');
+		if(window.sessionStorage){
+		    sessionStorage.setItem('userInfo', JSON.stringify(data.data));
+		    sessionStorage.setItem('userToken', data.data.token);
+		    sessionStorage.setItem('reloadFlag', "0");
+			sessionStorage.removeItem('adminToken');
+		}
 		//alert(window.app._models[1].state.userInfo);
 		//console.info("fetchTokenByCode:",payload.userInfo);
 		yield put({
@@ -162,8 +164,10 @@ export default {
       payload.disabled = '0';
 //      payload.longitude = window.app._models[1].state.longitude;
 //      payload.latitude = window.app._models[1].state.latitude;
-      payload.longitude = sessionStorage.getItem('longitude');
-      payload.latitude = sessionStorage.getItem('latitude');
+      if(window.sessionStorage){
+    	payload.longitude = sessionStorage.getItem('longitude');
+        payload.latitude = sessionStorage.getItem('latitude');
+      }
       if(payload.longitude == '' || payload.latitude == ''){
 	      payload.longitude = "121.5137";
 	      payload.latitude = "31.30293";  
@@ -258,8 +262,10 @@ export default {
               // set state
               window.app._models[1].state.latitude = latitude;
               window.app._models[1].state.longitude = longitude;
-              sessionStorage.setItem('latitude', latitude);
-              sessionStorage.setItem('longitude', longitude);
+              if(window.sessionStorage){
+                sessionStorage.setItem('latitude', latitude);
+                sessionStorage.setItem('longitude', longitude);
+              }
               //缓存经纬度
               //console.info(latitude + ' ' + longitude);
               let toPathname = '/pools';

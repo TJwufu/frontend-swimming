@@ -15,7 +15,7 @@ const Profile = ({ pools}) => {
 	    <section className={styles.item}>
 	      <header>
 	      	<Link to={'personalInfo'}>
-	      		<img src={userInfo.headimgurl == ''?"http://oiu42aq9j.bkt.clouddn.com/my_digital.png": userInfo.headimgurl} alt="" />
+	      		<img src={userInfo.headimgurl == ''?"http://swimming-1yd.1yd.me/my_digital.png": userInfo.headimgurl} alt="" />
 	      	</Link>
 	      </header>
 	      <div className={styles.my_name}>{userInfo.nickname}</div>
@@ -40,7 +40,7 @@ const Profile = ({ pools}) => {
 	      <List>
 	      	<Link to={'personalInfo'}>
 	            <Item
-	              thumb="http://oiu42aq9j.bkt.clouddn.com/my_info.png"
+	              thumb="http://swimming-1yd.1yd.me/my_info.png"
 	              arrow="horizontal"
 	              onClick={() => {}}
 	            ><span className={styles.nameList}>我的资料</span></Item>
@@ -48,14 +48,14 @@ const Profile = ({ pools}) => {
 	      </List>
 	      <List>
 	        <Item
-	          thumb="http://oiu42aq9j.bkt.clouddn.com/my_activity.png"
+	          thumb="http://swimming-1yd.1yd.me/my_activity.png"
 	          arrow="horizontal"
 	          onClick={() => {}}
 	        ><span className={styles.nameList}>我的活动</span></Item>
 	      </List>
 	      <List>
 	        <Item
-	          thumb="http://oiu42aq9j.bkt.clouddn.com/my_order.png"
+	          thumb="http://swimming-1yd.1yd.me/my_order.png"
 	          arrow="horizontal"
 	          onClick={() => {}}
 	        ><span className={styles.nameList}>我的订单</span></Item>
@@ -63,7 +63,7 @@ const Profile = ({ pools}) => {
 				<List>
 					<Link to={'healthCard'}>
 						<Item
-							thumb="http://oiu42aq9j.bkt.clouddn.com/my_card.png"
+							thumb="http://swimming-1yd.1yd.me/my_card.png"
 							arrow="horizontal"
 							onClick={() => {}}
 						><span className={styles.nameList}>我的健康卡</span>
@@ -74,14 +74,14 @@ const Profile = ({ pools}) => {
 	    <section className={styles.contact}>
 	      <List>
 	        <Item
-	          thumb="http://oiu42aq9j.bkt.clouddn.com/my_treaty.png"
+	          thumb="http://swimming-1yd.1yd.me/my_treaty.png"
 	          onClick={() => {}}
 	        ><span className={styles.nameList}>服务条款</span></Item>
 	      </List>
 	      <List>
 	        <Link to='fb'>
 	        <Item
-	          thumb="http://oiu42aq9j.bkt.clouddn.com/my_advice.png"
+	          thumb="http://swimming-1yd.1yd.me/my_advice.png"
 	          arrow="horizontal"
 	        ><span className={styles.nameList}>意见建议</span></Item>
 	        </Link>
@@ -89,7 +89,7 @@ const Profile = ({ pools}) => {
 	      <List>
 	        <Item className={styles.phone}
 	          extra=""
-	          thumb="http://oiu42aq9j.bkt.clouddn.com/my_tel.png"
+	          thumb="http://swimming-1yd.1yd.me/my_tel.png"
 	          arrow="horizontal"
 	          onClick={() => {}}
 	        ><span className={styles.nameList}>咨询电话</span></Item>

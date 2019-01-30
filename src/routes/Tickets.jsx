@@ -23,12 +23,12 @@ const Tickets = ({dispatch, pools}) => {
 		  </NavBar>
 	    
 	      <div className={styles.card}>
-            <img className={styles.card_img} src='http://oiu42aq9j.bkt.clouddn.com/my_advice.png'/>
+            <img className={styles.card_img} src='http://swimming-1yd.1yd.me/my_advice.png'/>
             <span className={styles.card_word}>优惠票</span>
           </div>
 	      <TicketList coupons={pools.currentItem.coupons}/>
 	      <div className={styles.card}>
-	        <img className={styles.card_img} src='http://oiu42aq9j.bkt.clouddn.com/my_advice.png'/>
+	        <img className={styles.card_img} src='http://swimming-1yd.1yd.me/my_advice.png'/>
 	        <span className={styles.card_word}>优惠卡</span>
 	      </div>
 	      <MemberCardList memberCards={pools.currentItem.memberCards}/>

@@ -35,16 +35,16 @@ const LayoutWithTabBar = ({ location, children, title = '', hiddenBackButton = f
       hidden={hiddenTabBar}
     >
       <TabBar.Item
-        icon={{ uri: 'http://oiu42aq9j.bkt.clouddn.com/tabbar-home.png' }}
-        selectedIcon={{ uri: 'http://oiu42aq9j.bkt.clouddn.com/tabbar-home-selected.png' }}
+        icon={{ uri: 'http://swimming-1yd.1yd.me/tabbar-home.png' }}
+        selectedIcon={{ uri: 'http://swimming-1yd.1yd.me/tabbar-home-selected.png' }}
         title="首页"
         key="index"
         data-seed="logId"
         selected={getMenuKeyFromUrl(location.pathname) === 'pools' || getMenuKeyFromUrl(location.pathname) === '/'}
       />
       <TabBar.Item
-        icon={{ uri: 'http://oiu42aq9j.bkt.clouddn.com/tabbar-discount.png' }}
-        selectedIcon={{ uri: 'http://oiu42aq9j.bkt.clouddn.com/tabbar-discount-selected.png' }}
+        icon={{ uri: 'http://swimming-1yd.1yd.me/tabbar-discount.png' }}
+        selectedIcon={{ uri: 'http://swimming-1yd.1yd.me/tabbar-discount-selected.png' }}
         title="优惠"
         key="discount"
         data-seed="logId"
@@ -54,16 +54,16 @@ const LayoutWithTabBar = ({ location, children, title = '', hiddenBackButton = f
           }}
       />
       <TabBar.Item
-        icon={{ uri: 'http://oiu42aq9j.bkt.clouddn.com/tabbar-info.png' }}
-        selectedIcon={{ uri: 'http://oiu42aq9j.bkt.clouddn.com/tabbar-info-selected.png' }}
+        icon={{ uri: 'http://swimming-1yd.1yd.me/tabbar-info.png' }}
+        selectedIcon={{ uri: 'http://swimming-1yd.1yd.me/tabbar-info-selected.png' }}
         title="咨讯"
         key="info"
         data-seed="logId"
         selected={getMenuKeyFromUrl(location.pathname) === 'info'}
       />
       <TabBar.Item
-        icon={{ uri: 'http://oiu42aq9j.bkt.clouddn.com/tabbar-mine.png' }}
-        selectedIcon={{ uri: 'http://oiu42aq9j.bkt.clouddn.com/tabbar-mine-selected.png' }}
+        icon={{ uri: 'http://swimming-1yd.1yd.me/tabbar-mine.png' }}
+        selectedIcon={{ uri: 'http://swimming-1yd.1yd.me/tabbar-mine-selected.png' }}
         title="我的"
         key="mine"
         data-seed="logId"

@@ -50,7 +50,7 @@ class DataTotal extends React.Component {
 				数据统计
 			</NavBar>
 		<div className={styles.div_head}>
-			“{ this.state.nickName }”最新数据统计<span >（此数据为自7月1日起至今的累计数据）</span>
+			“{ this.state.nickName }”最新数据统计<span >（此数据为2019年的累计数据）</span>
 		</div>
 			<List className={styles.list}>
 				<div className={styles.div_detail}>

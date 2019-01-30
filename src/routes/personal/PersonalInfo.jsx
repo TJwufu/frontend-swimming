@@ -23,7 +23,7 @@ const PersonalInfo = ({ pools}) => {
       我的
     </NavBar>
       <List style={{paddingTop: '.8rem'}}>
-        <Item extra={<div className={styles.div_top}><FilletImage width="100px" height="100px" imageUrl={userInfo.headimgurl == ''?"http://oiu42aq9j.bkt.clouddn.com/my_digital.png": userInfo.headimgurl} /></div>}>头像</Item>
+        <Item extra={<div className={styles.div_top}><FilletImage width="100px" height="100px" imageUrl={userInfo.headimgurl == ''?"http://swimming-1yd.1yd.me/my_digital.png": userInfo.headimgurl} /></div>}>头像</Item>
         <Item extra={<div>{userInfo.nickname}</div>}>昵称</Item>
         <Item extra={<div></div>}>手机号</Item>
       </List>
