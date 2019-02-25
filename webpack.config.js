@@ -32,18 +32,21 @@ module.exports = function(webpackConfig, env) {
       "HOST": "http://swimming.51yundong.me", //http://192.168.2.176:8093
       "LOGIN": "http://auth.51yundong.me",
       "FDFS": "http://dd.51yundong.me/v3",
+      "FACE": "http://face.51yundong.me/v3",
       "DEBUG": true
     },
     "development": {
       "HOST": "http://swim.yudingnet.com",
       "LOGIN": "http://auth.yudingnet.com",
       "FDFS": "http://dd.yudingnet.com/v3",
+      "FACE": "http://face.yudingnet.com/v3",
       "DEBUG": true
     },
     "production": {
       "HOST": "http://swimming.51yundong.me",
       "LOGIN": "http://auth.51yundong.me",
       "FDFS": "http://dd.51yundong.me/v3",
+      "FACE": "http://face.51yundong.me/v3",
       "DEBUG": false
     }
   };
