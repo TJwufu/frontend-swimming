@@ -66,7 +66,7 @@ class SweepCard extends React.Component {
           我的健康卡
         </NavBar>
         <div className={styles.bg_108ee9}>
-          <img src="//oiu4ewuqq.qnssl.com/norecord.png" alt="暂无健康卡" />
+          <img src="//swimming-1yd.1yd.me/norecord.png" alt="暂无健康卡" />
         </div>
         <div className={styles.pad_3}>
           <div className={styles.card}>
@@ -87,11 +87,11 @@ class SweepCard extends React.Component {
             </div>
             <div className={styles.dis_row}>
               <div className={styles.flx_l}>
-                <div className={styles.font_24}><img className={styles.calender} src="//oiu4ewuqq.qnssl.com/calender.png" />有效期：{this.state.cardInfo.validityDateBeginTxt} ~ {this.state.cardInfo.validityDateEndTxt}</div>
+                <div className={styles.font_24}><img className={styles.calender} src="//swimming-1yd.1yd.me/calender.png" />有效期：{this.state.cardInfo.validityDateBeginTxt} ~ {this.state.cardInfo.validityDateEndTxt}</div>
               </div>
               <div className={styles.flx_r}>
                 <div className={styles.width_50}>
-                  {this.state.cardInfo.cardStatus == '0' ? <img src="https://oiu4ewuqq.qnssl.com/nocertification.png" /> : <img src="https://oiu4ewuqq.qnssl.com/certification.png" />}
+                  {this.state.cardInfo.cardStatus == '0' ? <img src="//swimming-1yd.1yd.me/nocertification.png" /> : <img src="//swimming-1yd.1yd.me/certification.png" />}
                 </div>
               </div>
             </div>

@@ -46,7 +46,7 @@ class Sweep extends React.Component {
         </NavBar>
         <div className={styles.dis_flx}>
           <div className={styles.pad_108}>
-            <img src="//oiu4ewuqq.qnssl.com/swimSweep.png" alt="扫码入场" />
+            <img src="//swimming-1yd.1yd.me/swimSweep.png" alt="扫码入场" />
           </div>
           <div className={styles.butt}>
             <Button type="primary" className={styles.btn} onClick={this.showScanQRCode}>开始扫描</Button>
