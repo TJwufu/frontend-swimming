@@ -14,8 +14,24 @@ class Sweep extends React.Component {
     super(props);
     this.state = {
       id: props.params.id,
-      sourseUrl: '//swimming-1yd.1yd.me/swimSweep.png'
+      sourseUrl: '//swimming-1yd.1yd.me/swimSweep.png',
+      authUser: {}
 	};
+  }
+  componentWillMount(){
+	this.getAuthUser()
+  }
+  getAuthUser() {
+	  request(`${baseURL}/api/swim/fitness/cards/get/auth`,{
+		method: 'GET',
+		headers: {
+			'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
+		}
+	  }).then((res)=>{
+	    if(res.data.success == 'T') {
+	      this.setState({authUser: res.data.data})
+	    }
+	  }); 
   }
   goApply = () => {
     hashHistory.push('/healthApply')
@@ -119,6 +135,9 @@ class Sweep extends React.Component {
           扫码入场
         </NavBar>
         <div className={styles.dis_flx}>
+	      <div className={styles.title}>
+	      	{this.state.authUser.nickname}
+	      </div>
           <div className={styles.pad_108}>
             <img src={this.state.sourseUrl} alt="扫码入场" />
           </div>
