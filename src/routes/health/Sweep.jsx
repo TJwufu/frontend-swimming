@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { Table, List, InputItem, Switch, Flex, Stepper, Slider, Button, NavBar } from 'antd-mobile';
+import { Toast, Table, List, InputItem, Switch, Flex, Stepper, Slider, Button, NavBar } from 'antd-mobile';
 import { hashHistory } from 'dva/router';
 import { connect } from 'dva';
 import FilletImage from '../../components/Common/FilletImage';
@@ -50,7 +50,7 @@ class Sweep extends React.Component {
 	                  }).then((res)=>{
 	                    console.log(res)
 	                    if(res.data.success == 'T'){
-//		                  Toast.loading('正在匹配人脸识别信息...')
+		                  Toast.loading('正在匹配人脸识别信息...')
 	                      that.setState({sourseUrl: res.data.data.imageUrl})
 	                      let faceReq = '{"images": "'+res.data.data.imageUrl+'", "imageType":"URL", "groupIdList":"0cdef1d98d6311e78ebc0242ac110045"}'
 	                      request(`${faceURL}/faces/api/search/0cdef1d98d6311e78ebc0242ac110045`,{
@@ -63,20 +63,23 @@ class Sweep extends React.Component {
 		                  }).then((res)=>{
 		                	  if(res.data.success == 'T' && res.data.data.result && res.data.data.result.user_list){
 		                		  if(res.data.data.result.user_list.length > 0){
+		    		                  Toast.loading('匹配成功.')
 			                		  let cardId = res.data.data.result.user_list[0].user_id
 			                		  hashHistory.push('/sweepCard/'+ cardId);
 			                		  return;
 		                		  }
 		                	  }
 		                	  Toast.fail('人脸识别未通过，请重试')
+		                      that.setState({sourseUrl: '//swimming-1yd.1yd.me/swimSweep.png'})
 		                  });
 	                    }else {
 	                    	that.setState({sourseUrl: '//swimming-1yd.1yd.me/swimSweep.png'})
+	                    	Toast.fail('照片上传失败，请重试')
 	                    }
 	                  });
                 },
                 fail: function (res) {
-                	Toast.fail('上传图片失败，请重试')
+                	Toast.fail('上传照片失败，请重试')
                     that.setState({sourseUrl: '//swimming-1yd.1yd.me/swimSweep.png'})
                 }
             }); 
