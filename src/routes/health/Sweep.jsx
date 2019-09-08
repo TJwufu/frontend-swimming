@@ -78,14 +78,14 @@ class Sweep extends React.Component {
 		                    body: faceReq
 		                  }).then((res)=>{
 		                	  if(res.data.success == 'T' && res.data.data.result && res.data.data.result.user_list){
-		                		  if(res.data.data.result.user_list.length > 0){
+		                		  if(res.data.data.success){
 		    		                  Toast.loading('匹配成功.')
 			                		  let cardId = res.data.data.result.user_list[0].user_id
 			                		  hashHistory.push('/sweepCard/'+ cardId);
 			                		  return;
 		                		  }
 		                	  }
-		                	  Toast.fail('人脸识别未通过，请重试')
+		                	  Toast.fail('人脸识别信息未匹配成功，请知晓')
 		                      that.setState({sourseUrl: '//swimming-1yd.1yd.me/swimSweep.png'})
 		                  });
 	                    }else {
